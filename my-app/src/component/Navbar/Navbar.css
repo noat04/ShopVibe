@@ -1,0 +1,123 @@
+/* Căn chỉnh toàn bộ navbar */
+.navbar {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Tạo bóng nhẹ */
+}
+
+/* Logo */
+.navbar-brand img.logo {
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Menu items */
+.nav-item .nav-link {
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0 15px;
+    text-transform: uppercase;
+}
+
+.nav-item .nav-link:hover {
+    color: black;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+/* Dropdown menu */
+.nav-item .dropdown-menu {
+    border-radius: 4px;
+    padding: 10px 0;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-item .dropdown-item {
+    padding: 10px 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+.nav-item .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+/* Form tìm kiếm */
+.form-position {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    position: relative;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.btn-outline-dark {
+    border: none;
+    background: transparent;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.btn-outline-dark img {
+    height: 20px;
+    filter: grayscale(100%);
+}
+
+.btn-outline-dark:hover img {
+    filter: grayscale(0%);
+}
+
+/* Icon */
+.navbar-icon {
+    height: 25px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-icon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.search-form button {
+    background-color: white;
+    /* Màu nền ban đầu */
+    border: 1px solid gray;
+    /* Viền của nút */
+    border-radius: 5px;
+    /* Góc bo tròn */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Hiệu ứng chuyển màu */
+    padding: 5px 10px;
+    /* Độ dày bên trong nút */
+    cursor: pointer;
+    /* Hiển thị biểu tượng con trỏ */
+}
+
+.search-form button:hover {
+    background-color: rgb(227, 221, 221);
+    /* Chuyển sang màu khi hover */
+    color: black;
+    /* Màu icon bên trong khi hover */
+    transform: scale(1.1);
+    /* Tăng kích thước nhẹ khi hover */
+}
