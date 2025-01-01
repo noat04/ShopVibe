@@ -1,14 +1,10 @@
-// import './App.css';
-import Home from './page/Home/Home';
-import Products from './page/Products/Products';
-import ProductList from './component/mainProduct/ProductList';
-import fetchData from './fetchData';
+import React from 'react';
+import Login from './page/Login/login';  // Giữ lại chỉ những gì bạn sử dụng
+
 function App() {
   return (
     <div className="App">
-      {/* <Home></Home> */}
-      <Products></Products>
-      {/* <fetchData></fetchData> */}
+      <Login />  {/* Sử dụng Login ở đây */}
     </div>
   );
 }
