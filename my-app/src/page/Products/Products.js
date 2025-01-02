@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function Product() {
-    const [records, setRecords] = useState([]); // Khởi tạo state
+    const [products, setProducts] = useState([]); // Khởi tạo state
 
     useEffect(() => {
         // Fetch dữ liệu từ API
@@ -13,7 +13,7 @@ function Product() {
                 return response.json();
             })
             .then((data) => {
-                setRecords(data); // Lưu dữ liệu vào state
+                setProducts(data); // Lưu dữ liệu vào state
             })
             .catch((error) => {
                 console.error('Error fetching data:', error); // Log lỗi
@@ -22,20 +22,17 @@ function Product() {
 
     return (
         <div>
-            <h1>Product Page</h1>
-            <ul>
-                {records.length > 0 ? (
-                    records.map((product) => (
-                        <li key={product.productId}>
-                            {product.productId} | {product.productName}
-                        </li>
-                    ))
-                ) : (
-                    <p>Loading data...</p>
-                )}
-            </ul>
+            {products.length > 0 ? (
+                products.map((product) => (
+                    <div key={product.productId}>
+                        {product.productId} | {product.productName}
+                    </div>
+                ))
+            ) : (
+                <p>data null</p>
+            )}
         </div>
-    );
+    );    
 }
 
 export default Product;
