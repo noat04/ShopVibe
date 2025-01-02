@@ -1,0 +1,5 @@
+{"_id":{"$oid":"676eddf3309025f55194d2bf"},"name":"Sneakers","description":"Giày thể thao thoải mái, thời trang, phù hợp với phong cách đường phố và thường ngày.","createdAt":{"$date":"2024-12-27T17:03:47.143Z"}}
+{"_id":{"$oid":"676eddf3309025f55194d2c0"},"name":"Boots","description":"Giày bốt bảo vệ tốt, phù hợp với thời tiết lạnh hoặc phong cách mạnh mẽ, cá tính.","createdAt":{"$date":"2024-12-27T17:03:47.143Z"}}
+{"_id":{"$oid":"676eddf3309025f55194d2c1"},"name":"Loafers","description":"Giày lười sang trọng, dễ dàng mang vào và tháo ra, phù hợp với cả trang phục công sở và casual.","createdAt":{"$date":"2024-12-27T17:03:47.143Z"}}
+{"_id":{"$oid":"676eddf3309025f55194d2c2"},"name":"Sports","description":"Giày chuyên dụng cho thể thao, tối ưu hiệu suất và hỗ trợ tốt cho các hoạt động vận động.","createdAt":{"$date":"2024-12-27T17:03:47.143Z"}}
+{"_id":{"$oid":"676eddf3309025f55194d2c3"},"name":"Fashion","description":"Giày thời trang với thiết kế hiện đại, độc đáo, thể hiện phong cách và cá tính.","createdAt":{"$date":"2024-12-27T17:03:47.143Z"}}
