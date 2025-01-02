@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null); // Quản lý trạng thái menu dropdown
@@ -55,9 +57,7 @@ const Navbar = () => {
 
             {/* Dropdown THƯƠNG HIỆU */}
             <li
-              className={`nav-item dropdown ${
-                openMenu === "THUONG_HIEU" ? "show" : ""
-              }`}
+              className={`nav-item dropdown ${openMenu === "THUONG_HIEU" ? "show" : ""}`}
               onMouseEnter={() => handleMouseEnter("THUONG_HIEU")}
               onMouseLeave={handleMouseLeave}
             >
@@ -71,9 +71,7 @@ const Navbar = () => {
                 THƯƠNG HIỆU
               </a>
               <div
-                className={`dropdown-menu ${
-                  openMenu === "THUONG_HIEU" ? "show" : ""
-                }`}
+                className={`dropdown-menu ${openMenu === "THUONG_HIEU" ? "show" : ""}`}
                 aria-labelledby="navbarDropdownThuongHieu"
               >
                 <a className="dropdown-item" href="#">
@@ -90,9 +88,7 @@ const Navbar = () => {
 
             {/* Dropdown PHỤ KIỆN */}
             <li
-              className={`nav-item dropdown ${
-                openMenu === "PHU_KIEN" ? "show" : ""
-              }`}
+              className={`nav-item dropdown ${openMenu === "PHU_KIEN" ? "show" : ""}`}
               onMouseEnter={() => handleMouseEnter("PHU_KIEN")}
               onMouseLeave={handleMouseLeave}
             >
@@ -106,9 +102,7 @@ const Navbar = () => {
                 PHỤ KIỆN
               </a>
               <div
-                className={`dropdown-menu ${
-                  openMenu === "PHU_KIEN" ? "show" : ""
-                }`}
+                className={`dropdown-menu ${openMenu === "PHU_KIEN" ? "show" : ""}`}
                 aria-labelledby="navbarDropdownPhuKien"
               >
                 <a className="dropdown-item" href="#">

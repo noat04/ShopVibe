@@ -100,24 +100,21 @@
 
 .search-form button {
     background-color: white;
-    /* Màu nền ban đầu */
     border: 1px solid gray;
-    /* Viền của nút */
     border-radius: 5px;
-    /* Góc bo tròn */
     transition: background-color 0.3s, transform 0.2s;
-    /* Hiệu ứng chuyển màu */
     padding: 5px 10px;
-    /* Độ dày bên trong nút */
     cursor: pointer;
-    /* Hiển thị biểu tượng con trỏ */
 }
 
 .search-form button:hover {
     background-color: rgb(227, 221, 221);
-    /* Chuyển sang màu khi hover */
     color: black;
-    /* Màu icon bên trong khi hover */
     transform: scale(1.1);
-    /* Tăng kích thước nhẹ khi hover */
+}
+
+/* Tạo dấu ba chấm dropdown icon */
+.navbar-toggler-icon {
+    background-color: black;
+    border-radius: 3px;
 }

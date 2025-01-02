@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from '../../component/Navbar/Navbar';
 
 function Product() {
     const [products, setProducts] = useState([]); // Khởi tạo state
@@ -21,18 +22,21 @@ function Product() {
     }, []); // Chỉ chạy một lần khi component được mount
 
     return (
-        <div>
-            {products.length > 0 ? (
-                products.map((product) => (
-                    <div key={product.productId}>
-                        {product.productId} | {product.productName}
-                    </div>
-                ))
-            ) : (
-                <p>data null</p>
-            )}
-        </div>
-    );    
+        <>
+            <Navbar /> {/* Navbar component */}
+            <div>
+                {products.length > 0 ? (
+                    products.map((product) => (
+                        <div key={product.productId}>
+                            {product.productId} | {product.productName}
+                        </div>
+                    ))
+                ) : (
+                    <p>data null</p>
+                )}
+            </div>
+        </>
+    );
 }
 
 export default Product;
