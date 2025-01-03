@@ -26,5 +26,4 @@ const getProductId = async (id) => {
 }
 
 // Xuất hàm API
-export { getAllProducts }; // Export hàm getAllProducts
-export { getProductId }; // Export hàm getProductId
+export { getAllProducts, getProductId }; // Export hàm getAllProducts

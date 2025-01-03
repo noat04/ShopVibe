@@ -8,6 +8,15 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Hàm xử lý token
+    const setAuthToken = (token) => {
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        } else {
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
@@ -22,6 +31,7 @@ function Login() {
 
             // Lưu token vào localStorage
             localStorage.setItem('token', response.data.token);
+            setAuthToken(response.data.token);
             alert('Login successful!');
             setLoading(false);
 

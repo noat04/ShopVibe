@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter, createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
 import Login from './page/Login/login';
+import Register from './page/Register/Register';
 import Product from './page/Products/Products';
 import ProductDetailPage from './page/Products/ProductDetailPage';
 import Home from './page/Home/Home';
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Home />} path="/" />
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/product' element={<Product />} />
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
