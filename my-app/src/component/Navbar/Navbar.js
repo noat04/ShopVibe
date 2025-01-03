@@ -7,14 +7,6 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null); // Quản lý trạng thái menu dropdown
   const [searchValue, setSearchValue] = useState(""); // Quản lý trạng thái tìm kiếm
 
-  const handleMouseEnter = (menu) => {
-    setOpenMenu(menu);
-  };
-
-  const handleMouseLeave = () => {
-    setOpenMenu(null);
-  };
-
   const handleSearch = (e) => {
     e.preventDefault();
     console.log(`Searching for: ${searchValue}`);
@@ -55,66 +47,18 @@ const Navbar = () => {
               </a>
             </li>
 
-            {/* Dropdown THƯƠNG HIỆU */}
-            <li
-              className={`nav-item dropdown ${openMenu === "THUONG_HIEU" ? "show" : ""}`}
-              onMouseEnter={() => handleMouseEnter("THUONG_HIEU")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownThuongHieu"
-                data-bs-toggle="dropdown"
-                aria-expanded={openMenu === "THUONG_HIEU"}
-              >
-                THƯƠNG HIỆU
+            {/* product */}
+            <li className="nav-item">
+              <a className="nav-link" href="./Product">
+                PRODUCTS
               </a>
-              <div
-                className={`dropdown-menu ${openMenu === "THUONG_HIEU" ? "show" : ""}`}
-                aria-labelledby="navbarDropdownThuongHieu"
-              >
-                <a className="dropdown-item" href="#">
-                  Nike
-                </a>
-                <a className="dropdown-item" href="#">
-                  Adidas
-                </a>
-                <a className="dropdown-item" href="#">
-                  Jordan
-                </a>
-              </div>
             </li>
 
-            {/* Dropdown PHỤ KIỆN */}
-            <li
-              className={`nav-item dropdown ${openMenu === "PHU_KIEN" ? "show" : ""}`}
-              onMouseEnter={() => handleMouseEnter("PHU_KIEN")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownPhuKien"
-                data-bs-toggle="dropdown"
-                aria-expanded={openMenu === "PHU_KIEN"}
-              >
-                PHỤ KIỆN
+            {/* About */}
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                ABOUT
               </a>
-              <div
-                className={`dropdown-menu ${openMenu === "PHU_KIEN" ? "show" : ""}`}
-                aria-labelledby="navbarDropdownPhuKien"
-              >
-                <a className="dropdown-item" href="#">
-                  Balo
-                </a>
-                <a className="dropdown-item" href="#">
-                  Tất
-                </a>
-                <a className="dropdown-item" href="#">
-                  Vệ sinh giày
-                </a>
-              </div>
             </li>
           </ul>
 
