@@ -1,14 +1,25 @@
 import React from 'react';
-// import Login from './page/Login/login';  // Giữ lại chỉ những gì bạn sử dụng
+import { Route } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
+import Login from './page/Login/login';
 import Product from './page/Products/Products';
-import Home from './page/Home/Home'
+import ProductDetailPage from './page/Products/ProductDetailPage';
+import Home from './page/Home/Home';
+import NoPage from './page/Error/NoPage';
 
 function App() {
   return (
     <div className="App">
-      {/* <Login />  Sử dụng Login ở đây */}
-      <Product></Product>
-      {/* <Home></Home> */}
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />} path="/" />
+          <Route path='/home' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/product' element={<Product />} />
+          <Route path='/product-detail/:id' element={<ProductDetailPage />} />
+          <Route path='*' element={<NoPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

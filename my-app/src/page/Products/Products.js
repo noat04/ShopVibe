@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../component/Navbar/Navbar';
+import { getAllProducts } from '../../fetchData'; // Import getAllProducts từ fetchData.js
+import ProductList from '../../component/mainProduct/ProductList';
 
 function Product() {
     const [products, setProducts] = useState([]); // Khởi tạo state
 
     useEffect(() => {
-        // Fetch dữ liệu từ API
-        fetch('https://localhost:7180/api/Products/GetAllProducts')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setProducts(data); // Lưu dữ liệu vào state
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error); // Log lỗi
-            });
-    }, []); // Chỉ chạy một lần khi component được mount
+        const getData = async () => {
+            const data = await getAllProducts(); // Gọi hàm getAllProducts để lấy dữ liệu
+            setProducts(data); // Lưu dữ liệu vào state
+        };
+        getData(); // Thực thi hàm fetch
+    }, []); // Chạy một lần khi component được mount
 
     return (
         <>
@@ -27,9 +20,7 @@ function Product() {
             <div>
                 {products.length > 0 ? (
                     products.map((product) => (
-                        <div key={product.productId}>
-                            {product.productId} | {product.productName}
-                        </div>
+                        <ProductList key={product.productId} data={product} />
                     ))
                 ) : (
                     <p>data null</p>

@@ -13,7 +13,7 @@
 }
 
 .product-item img {
-    width: 100%;
+    width: 50%;
     height: auto;
     border-radius: 8px;
 }
@@ -28,22 +28,21 @@
 .product-item .product-price {
     text-align: center;
     font-size: 20px;
-    /* font-weight: bold; */
     margin-top: 5px;
     color: red;
 }
 
 /* Đảm bảo giao diện phù hợp với các màn hình nhỏ hơn */
 @media (max-width: 768px) {
-    .product-item {
-        width: 48%;
+    .container {
+        grid-template-columns: repeat(2, 1fr);
         /* 2 sản phẩm trong 1 hàng cho màn hình vừa */
     }
 }
 
 @media (max-width: 480px) {
-    .product-item {
-        width: 100%;
+    .container {
+        grid-template-columns: 1fr;
         /* 1 sản phẩm trong 1 hàng cho màn hình nhỏ */
     }
 }

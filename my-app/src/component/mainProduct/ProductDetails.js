@@ -2,20 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './productList.css';
 
-const ProductList = ({ data }) => {
+const ProductDetails = ({ data }) => {
     return (
         <div className="product-item">
-            <div>
-                <img src={data.image} alt={data.productName || 'Product'} />
-            </div>
+            <img src={data.image} alt={data.productName} />
             <div className="product-name">{data.productName}</div>
             <div className="product-price">{data.price}</div>
-            <button className="btn-view-details">
-                <Link to={`/product-detail/${data.productId}`} className="product-link">View</Link>
+            <button className="btn-add-to-cart">
+                <Link to={`/Cart/${data.productId}`} className="">Add to cart</Link>
             </button>
-        </div >
-
+        </div>
     );
 };
 
-export default ProductList;
+export default ProductDetails;
