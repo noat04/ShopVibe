@@ -1,0 +1,6 @@
+@EmloymentAdmin_HostAddress = https://localhost:7180
+
+GET {{EmloymentAdmin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
