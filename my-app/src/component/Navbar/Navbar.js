@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(null); // Quản lý trạng thái menu dropdown
   const [searchValue, setSearchValue] = useState(""); // Quản lý trạng thái tìm kiếm
 
   const handleSearch = (e) => {

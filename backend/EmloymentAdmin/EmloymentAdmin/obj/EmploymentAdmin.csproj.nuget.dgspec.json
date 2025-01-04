@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\websitenhom\\noat04.github.io\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj": {}
+    "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj": {}
   },
   "projects": {
-    "D:\\websitenhom\\noat04.github.io\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj": {
+    "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\websitenhom\\noat04.github.io\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj",
+        "projectUniqueName": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj",
         "projectName": "EmploymentAdmin",
-        "projectPath": "D:\\websitenhom\\noat04.github.io\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj",
-        "packagesPath": "C:\\Users\\thegi\\.nuget\\packages\\",
-        "outputPath": "D:\\websitenhom\\noat04.github.io\\EmloymentAdmin\\EmloymentAdmin\\obj\\",
+        "projectPath": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\EmploymentAdmin.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\thegi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

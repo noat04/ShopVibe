@@ -3,10 +3,10 @@
     public class Employment
     {
         public Guid Id { get; set; }
-        public [Required][StringLength(50)] string Name { get; set; }
-        public [Required][StringLength(50)] string Email {  get; set; }   
-        public [Required][StringLength(10)] Phone { get; set; }
-        public [Range(1, 100)] decimal Salary {  get; set; }
+        public string? Name { get; set; }
+        public string? Email {  get; set; }   
+        public string? Phone { get; set; }
+        public decimal? Salary {  get; set; }
 
     }
 }

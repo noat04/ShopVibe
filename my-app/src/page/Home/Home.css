@@ -1,0 +1,35 @@
+.container-banner {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+}
+
+.container-categories {
+    margin-top: 400px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 25px;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.container-categories a {
+    display: block;
+    /* Các liên kết bọc ảnh sẽ block-level */
+}
+
+
+.container-categories img {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+}
