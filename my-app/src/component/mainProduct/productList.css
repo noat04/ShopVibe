@@ -1,48 +1,19 @@
-/* CSS File: Products.css */
-.container {
+.product-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 25px;
-    justify-content: space-between;
-    padding: 20px;
+    /* 4 cột, mỗi cột chiếm 1 phần bằng nhau */
+    grid-template-rows: auto;
+    /* 1 hàng với chiều cao tự động */
+    gap: 16px;
+    /* Khoảng cách giữa các cột */
 }
 
-.product-item {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.product-item img {
-    width: 50%;
-    height: auto;
+.product-container>* {
+    /* Style cho từng sản phẩm */
+    border: 1px solid #ccc;
+    padding: 16px;
+    text-align: center;
+    background-color: #f9f9f9;
+    /* Màu nền nhẹ */
     border-radius: 8px;
-}
-
-.product-item .product-name {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.product-item .product-price {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 5px;
-    color: red;
-}
-
-/* Đảm bảo giao diện phù hợp với các màn hình nhỏ hơn */
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 sản phẩm trong 1 hàng cho màn hình vừa */
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        grid-template-columns: 1fr;
-        /* 1 sản phẩm trong 1 hàng cho màn hình nhỏ */
-    }
 }

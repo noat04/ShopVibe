@@ -4,6 +4,7 @@ import { getAllProducts } from '../../fetchData'; // Import getAllProducts từ 
 import ProductList from '../../component/mainProduct/ProductList';
 import Filter from '../../component/Filter/Filter';
 import Footer from '../../component/Footer/Footer';
+import '../../component/mainProduct/productList.css';
 function Product() {
     const [products, setProducts] = useState([]); // Khởi tạo state
 
@@ -19,13 +20,16 @@ function Product() {
         <div>
             <Navbar></Navbar>
             <Filter />
-            {products.length > 0 ? (
-                products.map((product) => (
-                    <ProductList key={product.productId} data={product} />
-                ))
-            ) : (
-                <p>data null</p>
-            )}
+            <div className='product-container'>
+                {products.length > 0 ? (
+                    products.map((product) => (
+                        <ProductList key={product.productId} data={product} />
+                    ))
+                ) : (
+                    <p>data null</p>
+                )}
+            </div>
+
             <Footer /> {/* Footer component */}
         </div>
 
