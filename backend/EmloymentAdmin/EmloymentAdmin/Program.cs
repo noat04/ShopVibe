@@ -7,6 +7,7 @@ using EmloymentAdmin.Middleware;
 using EmploymentAdmin.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
+using EmploymentAdmin.Models.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,7 @@ builder.Services.AddCors(options =>
 
 
 // Thêm các d?ch v? vào container.
-
+builder.Services.AddAutoMapper(typeof(ProductMapping));
 builder.Services.AddControllers();
 // Tìm hi?u thêm v? c?u hình Swagger/OpenAPI t?i https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

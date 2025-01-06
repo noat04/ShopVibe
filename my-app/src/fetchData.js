@@ -21,7 +21,7 @@ const getAllProducts = async () => {
 };
 
 const getProductId = async (id) => {
-    const url = `https://localhost:7180/api/Products/GetByProductId/${id}`;
+    const url = `https://localhost:7180/api/Products/GetByProductId/variants/${id}`;
     return fetchData(url);
 }
 

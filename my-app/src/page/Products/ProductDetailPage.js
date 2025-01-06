@@ -44,6 +44,22 @@ const ProductDetailPage = () => {
                     <h1 className="product-title">{product.productName}</h1>
                     <div className="product-price">
                         <span className="current-price">{product.price}₫</span>
+                        {/* Màu sắc */}
+                        <div className="product-colors">
+                            <h3>Màu sắc</h3>
+                            <div className="colors">
+                                {product.variants.map((variant, index) => (
+                                    <button
+                                        key={index}
+                                        className="color-option"
+                                        style={{ backgroundColor: variant.color }}
+                                        title={variant.color}
+                                    >
+                                        {variant.color}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                     {/* <div className="product-options">
                     <h3>Phân Loại</h3>
