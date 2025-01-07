@@ -7,7 +7,6 @@ import Footer from '../../component/Footer/Footer';
 import '../../component/mainProduct/productList.css';
 function Product() {
     const [products, setProducts] = useState([]); // Khởi tạo state
-
     useEffect(() => {
         const getData = async () => {
             const data = await getAllProducts(); // Gọi hàm getAllProducts để lấy dữ liệu
@@ -28,6 +27,7 @@ function Product() {
                 ) : (
                     <p>data null</p>
                 )}
+
             </div>
 
             <Footer /> {/* Footer component */}

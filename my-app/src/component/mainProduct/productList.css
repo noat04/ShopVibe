@@ -6,6 +6,7 @@
     1 hàng với chiều cao tự động */
     gap: 16px;
     /* Khoảng cách giữa các cột */
+    padding: 50px;
 }
 
 .product-container>* {
@@ -16,6 +17,7 @@
     background-color: #f9f9f9;
     /* Màu nền nhẹ */
     border-radius: 8px;
+
 }
 
 .product-container img {
@@ -24,4 +26,25 @@
     height: 250px;
     border-radius: 8px;
     /* Bo tròn ảnh */
+}
+
+.product-link {
+    text-decoration: none;
+    color: black;
+}
+
+.product-container>*:hover {
+    border: solid 1px black;
+    transform: translateY(-5px);
+}
+
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
 }

@@ -11,12 +11,10 @@ const ProductList = ({ data }) => {
                         <img src={data.image} alt={data.productName || 'Product'} />
                     </div>
                     <div className="product-name">{data.productName}</div>
-                    <div className="product-price">{data.price}</div>
-
+                    <div className="product-price">{data.price}đ</div>
                 </div>
+
             </Link>
-
-
         </div >
 
     );

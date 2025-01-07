@@ -25,5 +25,11 @@ const getProductId = async (id) => {
     return fetchData(url);
 }
 
+const getDataFilter = async () => {
+    const url = '/api/Products/GetAllProductsByCategories/by-category/{category}';
+    return fetchData(url);
+};
+
+
 // Xuất hàm API
-export { getAllProducts, getProductId }; // Export hàm getAllProducts
+export { getAllProducts, getProductId, getDataFilter }; // Export hàm getAllProducts

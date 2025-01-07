@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         {/* Logo */}
-        <a className="navbar-brand" href="./Home">
+        <a className="navbar-brand" href="/Home">
           <img
             className="logo"
             src="https://bizweb.dktcdn.net/100/347/064/themes/717243/assets/logo.png?1715653251743"
@@ -48,7 +48,7 @@ const Navbar = () => {
 
             {/* product */}
             <li className="nav-item">
-              <a className="nav-link" href="./Product">
+              <a className="nav-link" href="/Product">
                 PRODUCTS
               </a>
             </li>
