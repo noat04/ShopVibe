@@ -2,26 +2,31 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Filter.css';
+
 const Filter = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+
     const handleMouseEnter = () => {
         setOpenMenu(true);
     };
+
     const handleMouseLeave = () => {
         setOpenMenu(false);
     };
+
     const handleCategoriesEnter = () => {
         setIsCategoriesOpen(true);
     };
+
     const handleCategoriesLeave = () => {
         setIsCategoriesOpen(false);
     };
+
     const clickItem = (item) => {
-        setOpenMenu(item);
-        setIsCategoriesOpen(item);
         setOpenMenu(false);
         setIsCategoriesOpen(false);
+        console.log(item); // Nếu cần xử lý giá trị sau khi chọn
     };
 
     return (
@@ -29,55 +34,57 @@ const Filter = () => {
             <div>
                 <button
                     type="button"
-                    class="btn btn-secondary"
+                    className="btn btn-secondary" // Thay class bằng className
                     data-bs-toggle="button"
                     aria-pressed="false"
-                    autocomplete="off"
+                    autoComplete="off"
                 >
                     BEST SELLER
                 </button>
-
             </div>
-            <div class="dropdown open"
+            <div
+                className="dropdown open"
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+                onMouseLeave={handleMouseLeave}
+            >
                 <button
-                    class="btn btn-secondary"
+                    className="btn btn-secondary"
                     type="button"
-                    id="triggerId"
                     aria-haspopup="true"
                     aria-expanded={openMenu}
                 >
                     PRICE
                 </button>
-                {openMenu && (<div className='dropdown-menu show' aria-labelledby="triggerId">
-                    <button onClick={() => clickItem('Low to high')} class="dropdown-item" href="#">Low to high</button>
-                    <button onClick={() => clickItem('High to low')} class="dropdown-item" href="#">High to low</button>
-                </div>)}
-
+                {openMenu && (
+                    <div className='dropdown-menu show'>
+                        <button onClick={() => clickItem('Low to high')} className="dropdown-item">Low to high</button>
+                        <button onClick={() => clickItem('High to low')} className="dropdown-item">High to low</button>
+                    </div>
+                )}
             </div>
-            <div class="dropdown open"
+            <div
+                className="dropdown open"
                 onMouseEnter={handleCategoriesEnter}
-                onMouseLeave={handleCategoriesLeave}>
+                onMouseLeave={handleCategoriesLeave}
+            >
                 <button
-                    class="btn btn-secondary"
+                    className="btn btn-secondary"
                     type="button"
-                    id="triggerId"
                     aria-haspopup="true"
                     aria-expanded={isCategoriesOpen}
                 >
                     CATEGORIES
                 </button>
-                {isCategoriesOpen && (<div className='dropdown-menu show' aria-labelledby="triggerId">
-                    <button onClick={() => clickItem('Sneakers')} class="dropdown-item" href="#">Addidas</button>
-                    <button onClick={() => clickItem('Boots')} class="dropdown-item" href="#">Nike</button>
-                    <button onClick={() => clickItem('Loafers')} class="dropdown-item" href="#">Converse</button>
-                    <button onClick={() => clickItem('Sports')} class="dropdown-item" href="#">MLB</button>
-                    <button onClick={() => clickItem('Fashion')} class="dropdown-item" href="#">VANS</button>
-                </div>)}
-
+                {isCategoriesOpen && (
+                    <div className='dropdown-menu show'>
+                        <button onClick={() => clickItem('Sneakers')} className="dropdown-item">Addidas</button>
+                        <button onClick={() => clickItem('Boots')} className="dropdown-item">Nike</button>
+                        <button onClick={() => clickItem('Loafers')} className="dropdown-item">Converse</button>
+                        <button onClick={() => clickItem('Sports')} className="dropdown-item">MLB</button>
+                        <button onClick={() => clickItem('Fashion')} className="dropdown-item">VANS</button>
+                    </div>
+                )}
             </div>
-
         </div>
     );
 };

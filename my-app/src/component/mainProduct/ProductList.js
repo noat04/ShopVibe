@@ -5,7 +5,7 @@ import './productList.css';
 const ProductList = ({ data }) => {
     return (
         <div>
-            <a href="" className='product-item'>
+            <div className='product-item'>
                 <div>
                     <img src={data.image} alt={data.productName || 'Product'} />
                 </div>
@@ -14,7 +14,7 @@ const ProductList = ({ data }) => {
                 <button className="btn-view-details">
                     <Link to={`/product-detail/${data.productId}`} className="product-link">View</Link>
                 </button>
-            </a>
+            </div>
 
         </div >
 

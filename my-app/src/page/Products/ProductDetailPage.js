@@ -87,7 +87,7 @@ const ProductDetailPage = () => {
                 </div> */}
                     <div className="product-description">
                         <h3>Mô tả sản phẩm</h3>
-                        <p>{product.description}</p>
+                        <p>{product.categoriId}</p>
                     </div>
                 </div>
             </div>
