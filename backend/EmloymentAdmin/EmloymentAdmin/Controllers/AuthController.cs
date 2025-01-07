@@ -27,24 +27,6 @@ namespace EmloymentAdmin.Controllers
             _configuration = configuration;
         }
 
-        //[HttpPost("register")]
-        //public async Task<IActionResult> Register([FromBody] Register model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
-        //        var result = await _userManager.CreateAsync(user, model.Password);
-
-        //        if (result.Succeeded)
-        //        {
-        //            return Ok(new { Message = "User registered successfully" });
-        //        }
-
-        //        return BadRequest(result.Errors);
-        //    }
-        //    return BadRequest("Invalid model state");
-        //}
-
         // Đăng ký người dùng(User)
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] Register model)
@@ -142,6 +124,17 @@ namespace EmloymentAdmin.Controllers
                 return Ok(new { Message = "Role assigned successfully" });
             }
             return BadRequest(result.Errors);
+        }
+        [HttpPost("intospect")]
+        public bool Intospect([FromBody] string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                return false;
+            }
+
+            // Ví dụ kiểm tra token
+            return token == "valid-token";
         }
     }
 }

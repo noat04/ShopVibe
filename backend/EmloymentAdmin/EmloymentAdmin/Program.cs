@@ -26,6 +26,7 @@ builder.Services.AddCors(options =>
 
 // Thêm các d?ch v? vào container.
 builder.Services.AddAutoMapper(typeof(ProductMapping));
+builder.Services.AddAutoMapper(typeof(CartMapping));
 builder.Services.AddControllers();
 // Tìm hi?u thêm v? c?u hình Swagger/OpenAPI t?i https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -61,6 +62,28 @@ builder.Services.AddAuthentication(option =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+    };
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            context.NoResult();
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "text/plain";
+            return context.Response.WriteAsync("Token is invalid.");
+        },
+        OnTokenValidated = context =>
+        {
+            // Bạn có thể thực hiện thêm logic tại đây nếu cần
+            return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
+            return context.Response.WriteAsync("{\"error\": \"Unauthorized access\"}");
+        }
     };
 });
 

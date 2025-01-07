@@ -3,6 +3,7 @@ using EmloymentAdmin.Data;
 using EmloymentAdmin.Models.Entities;
 using EmploymentAdmin.Models.Dtos;
 using EmploymentAdmin.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -26,6 +27,7 @@ public class ProductsController : ControllerBase
     // Lấy tất cả sản phẩm
     [HttpGet]
     [Route("")]
+    //[Authorize] // Yêu cầu xác thực bằng JWT
     public async Task<IEnumerable<ProductDto>> GetAllProducts()
     {
         var products = await _products.Find(FilterDefinition<Products>.Empty).ToListAsync();

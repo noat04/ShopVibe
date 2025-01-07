@@ -1,0 +1,2 @@
+{"_id":{"$oid":"677cda3c3666ef922a793a34"},"cartId":"GH001","productId":"SP001","price":50000,"quality":2}
+{"_id":{"$oid":"677cda593666ef922a793a35"},"cartId":"GH001","productId":"SP002","price":150000,"quality":1}
