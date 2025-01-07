@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     /* 4 cột, mỗi cột chiếm 1 phần bằng nhau */
-    grid-template-rows: auto;
-    /* 1 hàng với chiều cao tự động */
+    /* grid-template-rows: auto;
+    1 hàng với chiều cao tự động */
     gap: 16px;
     /* Khoảng cách giữa các cột */
 }
@@ -16,4 +16,12 @@
     background-color: #f9f9f9;
     /* Màu nền nhẹ */
     border-radius: 8px;
+}
+
+.product-container img {
+    width: 100%;
+    /* Ảnh chiếm toàn bộ chiều rộng */
+    height: 250px;
+    border-radius: 8px;
+    /* Bo tròn ảnh */
 }
