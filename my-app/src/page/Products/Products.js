@@ -32,9 +32,9 @@ function Product() {
                 }
 
                 if (sort === 'High to low') {
-                    data = sortHighToLow(); // Sắp xếp giảm dần
+                    data = await sortHighToLow(); // Sắp xếp giảm dần
                 } else if (sort === 'Low to high') {
-                    data = sortLowToHigh(); // Sắp xếp tăng dần
+                    data = await sortLowToHigh(); // Sắp xếp tăng dần
                 }
                 setProducts(data);
             } catch (error) {
@@ -64,7 +64,7 @@ function Product() {
 
             <Footer /> {/* Footer component */}
         </div>
-
+        // Sửa
 
     );
 }
