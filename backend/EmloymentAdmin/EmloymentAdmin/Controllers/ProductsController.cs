@@ -110,6 +110,28 @@ public class ProductsController : ControllerBase
         var products = await _products.Find(FilterDefinition<Products>.Empty).SortBy(x => x.Price).ToListAsync();
         return _mapper.Map<IEnumerable<ProductDto>>(products);
     }
+
+    // Lấy sản phẩm theo thứ tự giảm dần theo categories
+    
+    [HttpGet]
+    [Route("desc/{categories}")]
+    public async Task<IEnumerable<ProductDto>> GetAllProductsDescByCategories(string categories)
+    {
+        var filter = Builders<Products>.Filter.Eq(x => x.CategoryId, categories);
+        var products = await _products.Find(filter).SortByDescending(x => x.Price).ToListAsync();
+        return _mapper.Map<IEnumerable<ProductDto>>(products);
+    }
+
+    // Lấy sản phẩm theo thứ tự tăng dầntheo categories
+   
+    [HttpGet]
+    [Route("asc/{categories}")]
+    public async Task<IEnumerable<ProductDto>> GetAllProductsAscByCategories(string categories)
+    {
+        var filter = Builders<Products>.Filter.Eq(x => x.CategoryId, categories);
+        var products = await _products.Find(FilterDefinition<Products>.Empty).SortBy(x => x.Price).ToListAsync();
+        return _mapper.Map<IEnumerable<ProductDto>>(products);
+    }
     // Thêm sản phẩm mới
     [HttpPost]
     [Route("")]

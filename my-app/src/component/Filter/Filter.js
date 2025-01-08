@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ const Filter = () => {
     const [openPrice, setOpenPrice] = useState(false);
     const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
     const navigate = useNavigate();
+    const navigatePrice = useNavigate();
 
 
     const handleMouseEnterPrice = () => {
@@ -26,12 +27,16 @@ const Filter = () => {
         setIsCategoriesOpen(false);
     };
 
-    const clickItem = (category) => {
-        setOpenPrice(false);
+    const clickItemCategories = (category) => {
         setIsCategoriesOpen(false);
-        navigate(`/products/${category}`);
+        navigate(`/products?category=${category}`);
 
     };
+
+    const clickItem = (sort) => {
+        setOpenPrice(false);
+        navigatePrice(`/products?sort=${sort}`);
+    }
 
 
     return (
@@ -82,11 +87,11 @@ const Filter = () => {
                 </button>
                 {isCategoriesOpen && (
                     <div className='dropdown-menu show'>
-                        <button onClick={() => clickItem('Adidas')} className="dropdown-item">Adidas</button>
-                        <button onClick={() => clickItem('Nike')} className="dropdown-item">Nike</button>
-                        <button onClick={() => clickItem('Converse')} className="dropdown-item">Converse</button>
-                        <button onClick={() => clickItem('MLB')} className="dropdown-item">MLB</button>
-                        <button onClick={() => clickItem('VANS')} className="dropdown-item">VANS</button>
+                        <button onClick={() => clickItemCategories('Adidas')} className="dropdown-item">Adidas</button>
+                        <button onClick={() => clickItemCategories('Nike')} className="dropdown-item">Nike</button>
+                        <button onClick={() => clickItemCategories('Converse')} className="dropdown-item">Converse</button>
+                        <button onClick={() => clickItemCategories('MLB')} className="dropdown-item">MLB</button>
+                        <button onClick={() => clickItemCategories('VANS')} className="dropdown-item">VANS</button>
                     </div>
                 )}
             </div>

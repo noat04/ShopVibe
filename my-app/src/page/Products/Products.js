@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../component/Navbar/Navbar';
-import { getAllProducts } from '../../fetchData'; // Import getAllProducts từ fetchData.js
+import { getAllProducts, sortHighToLow, sortLowToHigh } from '../../fetchData'; // Import getAllProducts từ fetchData.js
 import ProductList from '../../component/mainProduct/ProductList';
 import Filter from '../../component/Filter/Filter';
 import Footer from '../../component/Footer/Footer';
 import '../../component/mainProduct/productList.css';
 import { getDataFilter } from '../../fetchData';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 function Product() {
-    const [products, setProducts] = useState([]); // Khởi tạo state
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { category } = useParams();
+    const location = useLocation();
+
+    // Lấy giá trị từ query params
+    const queryParams = new URLSearchParams(location.search);
+    const category = queryParams.get('category'); // Lấy `category` từ query param
+    const sort = queryParams.get('sort'); // Lấy `sort` từ query param
     console.log(category);
+    console.log(sort);
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
             try {
                 let data;
                 if (!category) {
-                    // Nếu không có category -> lấy tất cả sản phẩm
+                    // Không chọn category -> Lấy tất cả sản phẩm
                     data = await getAllProducts();
                 } else {
-                    // Gọi API lọc theo category
+                    // Lọc sản phẩm theo category
                     data = await getDataFilter(category);
+                }
+
+                if (sort === 'High to low') {
+                    data = sortHighToLow(); // Sắp xếp giảm dần
+                } else if (sort === 'Low to high') {
+                    data = sortLowToHigh(); // Sắp xếp tăng dần
                 }
                 setProducts(data);
             } catch (error) {
@@ -33,7 +45,7 @@ function Product() {
             }
         };
         fetchProducts();
-    }, [category]); // Thay đổi khi URL category thay đổi
+    }, [category, sort]); // Thay đổi khi URL category thay đổi
 
     return (
         <div>
@@ -45,7 +57,7 @@ function Product() {
                         <ProductList key={product.productId} data={product} />
                     ))
                 ) : (
-                    <p>data null</p>
+                    <p>loading</p>
                 )}
 
             </div>

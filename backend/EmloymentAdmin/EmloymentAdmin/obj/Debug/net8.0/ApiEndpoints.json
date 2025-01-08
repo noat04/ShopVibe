@@ -358,6 +358,32 @@
   },
   {
     "ContainingType": "ProductsController",
+    "Method": "GetAllProductsAscByCategories",
+    "RelativePath": "api/Products/GetAllProductsAscByCategories/asc/{categories}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categories",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EmploymentAdmin.Models.Dtos.ProductDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProductsController",
     "Method": "GetAllProductsByCategories",
     "RelativePath": "api/Products/GetAllProductsByCategories/by-category/{category}",
     "HttpMethod": "GET",
@@ -390,6 +416,32 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EmploymentAdmin.Models.Dtos.ProductDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProductsController",
+    "Method": "GetAllProductsDescByCategories",
+    "RelativePath": "api/Products/GetAllProductsDescByCategories/desc/{categories}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categories",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[EmploymentAdmin.Models.Dtos.ProductDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",

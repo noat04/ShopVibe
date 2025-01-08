@@ -29,6 +29,16 @@ const getDataFilter = async (category) => {
     return fetchData(url);
 };
 
+const sortLowToHigh = async () => {
+    const url = `https://localhost:7180/api/Products/GetAllProductsAsc/asc`;
+    return fetchData(url);
+}
+
+const sortHighToLow = async () => {
+    const url = `https://localhost:7180/api/Products/GetAllProductsDesc/desc`;
+    return fetchData(url);
+}
+
 
 // Xuất hàm API
-export { getAllProducts, getProductId, getDataFilter }; // Export hàm getAllProducts
+export { getAllProducts, getProductId, getDataFilter, sortLowToHigh, sortHighToLow }; // Export hàm getAllProducts

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\ShopVibe\\backend\\EmloymentAdmin\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\models\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +46,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAqwHIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T05:53:21.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\AuthController.cs",
@@ -54,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Program.cs",
@@ -66,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\CartController.cs",
@@ -78,7 +95,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Entities\\Cart.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Entities\\Cart.cs",
@@ -91,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "CartDetailDto.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
@@ -103,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CartDto.cs",
               "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Dtos\\CartDto.cs",

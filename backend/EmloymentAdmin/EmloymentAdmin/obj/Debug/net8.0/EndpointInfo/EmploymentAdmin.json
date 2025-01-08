@@ -742,6 +742,102 @@
         }
       }
     },
+    "/api/Products/GetAllProductsDescByCategories/desc/{categories}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "categories",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Products/GetAllProductsAscByCategories/asc/{categories}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "categories",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Products/AddProduct": {
       "post": {
         "tags": [
