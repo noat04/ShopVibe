@@ -17,7 +17,8 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/product' element={<Product />} />
+          <Route path='/products/:category' element={<Product />} />
+          <Route path='/products' element={<Product />} />
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
         </Routes>

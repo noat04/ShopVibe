@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { getDataFilter } from '../../fetchData';
+import { useNavigate } from 'react-router-dom';
 import './Filter.css';
 
 const Filter = () => {
     const [openPrice, setOpenPrice] = useState(false);
     const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-    const [selectItem, setSelectItem] = useState(null);
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleMouseEnterPrice = () => {
         setOpenPrice(true);
@@ -27,32 +26,12 @@ const Filter = () => {
         setIsCategoriesOpen(false);
     };
 
-    const clickItem = async (item) => {
+    const clickItem = (category) => {
         setOpenPrice(false);
         setIsCategoriesOpen(false);
-        setSelectItem(item);
+        navigate(`/products/${category}`);
 
     };
-
-    useEffect(() => {
-        if (selectItem) {
-            getDataFilter(selectItem);
-        }
-    }, [selectItem]);
-
-    const dataFilter = async (getDataFilter) => {
-        setLoading(true);
-        try {
-            const response = await fetch(`https://api.example.com/products?filter=${getDataFilter}`);
-            const data = await response.json();
-            setData(data);  // Lưu dữ liệu trả về vào state
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        } finally {
-            setLoading(false);  // Dừng loading
-        }
-    };
-
 
 
     return (

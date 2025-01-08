@@ -1,5 +1,4 @@
-// fetchData.js
-// Hàm fetch chung
+
 const fetchData = async (url) => {
     try {
         const response = await fetch(url);
@@ -25,8 +24,8 @@ const getProductId = async (id) => {
     return fetchData(url);
 }
 
-const getDataFilter = async () => {
-    const url = '/api/Products/GetAllProductsByCategories/by-category/{category}';
+const getDataFilter = async (category) => {
+    const url = `https://localhost:7180/api/Products/GetAllProductsByCategories/by-category/${category}`;
     return fetchData(url);
 };
 
