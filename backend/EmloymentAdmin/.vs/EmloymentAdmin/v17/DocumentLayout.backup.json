@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\",
+  "WorkspaceRootPath": "D:\\ShopVibe\\backend\\EmloymentAdmin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\models\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\dtos\\cartdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\dtos\\cartdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\models\\dtos\\cartdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\dtos\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\models\\dtos\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\models\\dtos\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -48,11 +48,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "EmloymentAdmin\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T05:53:21.293Z",
               "EditorCaption": ""
@@ -61,9 +61,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
               "RelativeToolTip": "EmloymentAdmin\\Controllers\\AuthController.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAYwFMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -73,9 +73,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Program.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
               "RelativeToolTip": "EmloymentAdmin\\Program.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAAAiwGAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -85,9 +85,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "CartController.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CartController.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\CartController.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CartController.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CartController.cs",
               "RelativeToolTip": "EmloymentAdmin\\Controllers\\CartController.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAiwGkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -97,9 +97,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Cart.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Entities\\Cart.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Entities\\Cart.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Entities\\Cart.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Entities\\Cart.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Entities\\Cart.cs",
               "RelativeToolTip": "EmloymentAdmin\\Models\\Entities\\Cart.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -109,9 +109,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "CartDetailDto.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
               "RelativeToolTip": "EmloymentAdmin\\Models\\Dtos\\CartDetailDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -121,9 +121,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "CartDto.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
               "RelativeToolTip": "EmloymentAdmin\\Models\\Dtos\\CartDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

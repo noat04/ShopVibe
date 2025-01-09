@@ -91,7 +91,7 @@ const Filter = () => {
                         <button onClick={() => clickItemCategories('Nike')} className="dropdown-item">Nike</button>
                         <button onClick={() => clickItemCategories('Converse')} className="dropdown-item">Converse</button>
                         <button onClick={() => clickItemCategories('MLB')} className="dropdown-item">MLB</button>
-                        <button onClick={() => clickItemCategories('VANS')} className="dropdown-item">VANS</button>
+                        <button onClick={() => clickItemCategories('Vans')} className="dropdown-item">Vans</button>
                     </div>
                 )}
             </div>

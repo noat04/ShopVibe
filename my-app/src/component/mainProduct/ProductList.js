@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './productList.css';
 
 const ProductList = ({ data }) => {
+    const formattedPrice = data.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     return (
         <div>
             <Link to={`/product-detail/${data.productId}`} className="product-link">
@@ -11,7 +12,7 @@ const ProductList = ({ data }) => {
                         <img src={data.image} alt={data.productName || 'Product'} />
                     </div>
                     <div className="product-name">{data.productName}</div>
-                    <div className="product-price">{data.price}đ</div>
+                    <div className="product-price">{formattedPrice}</div>
                 </div>
 
             </Link>

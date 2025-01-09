@@ -22,74 +22,56 @@ const ProductDetailPage = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div className="product-detail-page">
+            <div className="container-detail">
                 {/* Hình ảnh sản phẩm */}
-                <div className="product-image-section">
+                <div className="image-section">
                     <div className="main-image">
                         <img src={product.image} alt={product.productName} />
                     </div>
-                    {/* <div className="thumbnail-images">
-                    {product.images.map((img, index) => (
-                        <img
-                            key={index}
-                            src={img}
-                            alt={`Thumbnail ${index}`}
-                        />
-                    ))}
-                </div> */}
+                    <div className="thumbnail-images">
+                        {product.variants.map((variant, index) => (
+                            <img
+                                key={index}
+                                src={variant.img}
+                                alt={`Thumbnail ${index}`}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Chi tiết sản phẩm */}
-                <div className="product-info-section">
-                    <h1 className="product-title">{product.productName}</h1>
-                    <div className="product-price">
-                        <span className="current-price">{product.price}₫</span>
-                        {/* Màu sắc */}
-                        <div className="product-colors">
-                            <h3>Màu sắc</h3>
-                            <div className="colors">
-                                {product.variants.map((variant, index) => (
-                                    <button
-                                        key={index}
-                                        className="color-option"
-                                        style={{ backgroundColor: variant.color }}
-                                        title={variant.color}
-                                    >
-                                        {variant.color}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    {/* <div className="product-options">
-                    <h3>Phân Loại</h3>
-                    <div className="categories">
-                        {product.categories.map((category, index) => (
-                            <button
-                                key={index}
-                                className={product.selectedCategory === category ? 'selected' : ''}
-                            >
-                                {category}
-                            </button>
+                <div className="info-section">
+                    <span className="product-name">{product.productName}</span>
+                    <span className="product-price">
+                        {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                    </span>
+                    {/* Màu sắc */}
+                    <div className="product-option">
+                        <span>Màu </span>
+                        {product.variants.map((variant, index) => (
+                            <button className='btn-color' key={index} style={{ backgroundColor: variant.color }}></button>
                         ))}
                     </div>
-                    <h3>Size</h3>
-                    <div className="sizes">
-                        {product.sizes.map((size, index) => (
-                            <button
-                                key={index}
-                                className={product.selectedSize === size ? 'selected' : ''}
-                            >
-                                {size}
-                            </button>
+                    <div className="product-option">
+                        <span>Size</span>
+                        {product.variants.map((variant, index) => (
+                            <button className='btn-size' key={index}>{variant.size}</button>
                         ))}
                     </div>
-                </div> */}
-                    <div className="product-description">
-                        <h3>Mô tả sản phẩm</h3>
-                        <p>{product.categoriId}</p>
+                    <div className="count">
+                        <p>Số lượng</p>
+                        <button>-</button>
+                        <span>1</span>
+                        <button>+</button>
+                    </div>
+                    <div className="btn-cart">
+                        <button>MUA NGAY</button>
                     </div>
                 </div>
+            </div>
+            <div className="container-description">
+                <h2>Mô tả sản phẩm</h2>
+
             </div>
             <Footer />
         </>
