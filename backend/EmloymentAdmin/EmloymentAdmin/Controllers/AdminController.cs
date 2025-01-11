@@ -13,7 +13,7 @@ namespace EmploymentAdmin.Controllers
         public IActionResult Get()
         {
             return Ok("Hello from Admin Controller");
-        }
+        }//
     }
 }
     
