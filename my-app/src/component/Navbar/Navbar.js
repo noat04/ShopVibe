@@ -1,15 +1,129 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import { useSelector, useDispatch } from "react-redux";
+import { toggleStatusTab } from "../../stores/cartData";
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState(""); // Quản lý trạng thái tìm kiếm
+  const dispatch = useDispatch();
 
+  const [totalQuanlity, setTotalQuanlity] = useState(0);
+  const carts = useSelector((store) => store.cart?.items || []);
+  useEffect(() => {
+    let total = 0;
+    carts.forEach((item) => {
+      total += item.quantity;
+    }
+    );
+    setTotalQuanlity(total);
+  }, [carts]);
+
+  const handleOpenTabCart = () => {
+    dispatch(toggleStatusTab());
+  };
+  const [isRegister, setIsRegister] = useState(false); // Xác định hiển thị form đăng ký hay đăng nhập
+  const [showForm, setShowForm] = useState(false); // Quản lý trạng thái hiển thị form
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Xử lý thay đổi giá trị trong form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Hiển thị form đăng nhập
+  const handleShowLogin = (e) => {
+    e.preventDefault();
+    setIsRegister(false);
+    setShowForm(true);
+  };
+
+  // Hiển thị form đăng ký
+  const handleShowRegister = (e) => {
+    setIsRegister(true);
+    setShowForm(true);
+    e.preventDefault();
+  };
+
+  // Đóng form
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
+
+  // Xử lý tìm kiếm
   const handleSearch = (e) => {
     e.preventDefault();
     console.log(`Searching for: ${searchValue}`);
-    // Thực hiện logic tìm kiếm tại đây (VD: gọi API, điều hướng đến trang kết quả, v.v.)
+
+  };
+
+  // Xử lý đăng nhập/đăng ký
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (isRegister) {
+      // Xử lý đăng ký
+      if (formData.password !== formData.confirmPassword) {
+        alert("Mật khẩu và xác nhận mật khẩu không khớp!");
+        return;
+      }
+
+      try {
+        const response = await fetch("https://localhost:7180/api/Auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+        const result = await response.json();
+        if (response.ok) {
+          alert("Đăng ký thành công!");
+          handleCloseForm();
+        } else {
+          alert(result.message || "Đăng ký thất bại!");
+        }
+      } catch (error) {
+        console.error("Đăng ký lỗi:", error);
+        alert("Lỗi hệ thống khi đăng ký!");
+      }
+    } else {
+      // Xử lý đăng nhập
+      try {
+        const response = await fetch("https://localhost:7180/api/Auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+          }),
+        });
+        const result = await response.json();
+        if (response.ok) {
+          alert("Đăng nhập thành công!");
+          handleCloseForm();
+        } else {
+          alert(result.message || "Đăng nhập thất bại!");
+        }
+      } catch (error) {
+        console.error("Đăng nhập lỗi:", error);
+        alert("Lỗi hệ thống khi đăng nhập!");
+      }
+    }
   };
 
   return (
@@ -41,7 +155,7 @@ const Navbar = () => {
           <ul className="navbar-nav me-auto">
             {/* BLACK FRIDAY */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/blackfriday">
                 BLACK FRIDAY
               </a>
             </li>
@@ -55,12 +169,13 @@ const Navbar = () => {
 
             {/* About */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/about">
                 ABOUT
               </a>
             </li>
           </ul>
 
+          {/* Search Bar */}
           {/* Search Bar */}
           <form
             className="d-flex align-items-center search-form"
@@ -83,12 +198,16 @@ const Navbar = () => {
           </form>
 
           {/* Icons */}
-          <div className="navbar-component d-flex align-items-center ms-3">
+          <div className="navbar-component d-flex align-items-center ms-3 rounded-full" onClick={handleOpenTabCart}>
+            {/* <a className="cart-link" href="/cart" > */}
             <img
               src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"
               alt="Cart"
               className="navbar-icon"
             />
+            <span className="cart-count"> ({totalQuanlity})</span>
+
+            {/* </a> */}
             <img
               src="https://cdn-icons-png.flaticon.com/128/5001/5001572.png"
               alt="Notification"
@@ -100,8 +219,86 @@ const Navbar = () => {
               className="navbar-icon"
             />
           </div>
+          {/* Login/Signup */}
+          <div className="d-flex">
+            <a href="" onClick={handleShowLogin}>Đăng nhập</a>
+            <span>/</span>
+            <a href="" onClick={handleShowRegister}>Đăng ký</a>
+          </div>
         </div>
       </div>
+
+      {/* Authentication Form */}
+      {showForm && (
+        <>
+          <div
+            className={`auth-overlay ${showForm ? "active" : ""}`}
+            onClick={handleCloseForm}
+          ></div>
+          <div className={`auth-modal ${showForm ? "active" : ""}`}>
+            <div className="auth-form">
+              <h2>{isRegister ? "Đăng ký" : "Đăng nhập"}</h2>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Tên người dùng</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="username"
+                  placeholder="Nhập tên người dùng"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  required
+                />
+
+                {isRegister && (
+                  <>
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      placeholder="Nhập email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </>
+                )}
+
+                <label htmlFor="password">Mật khẩu</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  placeholder="Nhập mật khẩu"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+
+                {isRegister && (
+                  <>
+                    <label htmlFor="confirmPassword">Xác nhận mật khẩu</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="confirmPassword"
+                      placeholder="Nhập lại mật khẩu"
+                      value={formData.confirmPassword}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </>
+                )}
+
+                <button type="submit">
+                  {isRegister ? "Đăng ký" : "Đăng nhập"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
     </nav>
   );
 };

@@ -12,7 +12,8 @@ namespace EmploymentAdmin.Models.Dtos
         public DateTime ImportDate { get; set; }
         public string CategoryId { get; set; }
         public string Image { get; set; }
+        public string Description { get; set; }
         // Lưu Variants trong DTO để sử dụng ngoài Entity (chỉ trong API trả về hoặc xử lý tạm thời)
         public List<ProductVariantDto> Variants { get; set; } = new List<ProductVariantDto>();
     }
-}
+}   

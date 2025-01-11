@@ -7,6 +7,8 @@ import Product from './page/Products/Products';
 import ProductDetailPage from './page/Products/ProductDetailPage';
 import Home from './page/Home/Home';
 import NoPage from './page/Error/NoPage';
+import Cart from './page/Cart/Cart';
+
 
 function App() {
   return (
@@ -14,14 +16,22 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} path="/" />
-          <Route path='/home' element={<Home />} />
+          {/* <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/products/:category' element={<Product />} />
           <Route path='/products/:sort' element={<Product />} />
           <Route path='/products' element={<Product />} />
+          <Route path='/product-detail/:id' element={<ProductDetailPage />} /> */}
+          <Route index element={<Home />} path="/" />
+          <Route path='/home' element={<Home />} />
+          <Route path='/products/:category' element={<Product />} />
+          <Route path='/products/:sort' element={<Product />} />
+          <Route path='/products' element={<Product />} />
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
+          <Route path='/cart' element={<Cart />} />
+          {/* <Route path='*' element={<NoPage />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

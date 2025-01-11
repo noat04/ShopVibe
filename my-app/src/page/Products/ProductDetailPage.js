@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import '../../component/mainProduct/ProductDetails.css';
 import Navbar from '../../component/Navbar/Navbar';
 import Footer from '../../component/Footer/Footer';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../stores/cartData';
 const ProductDetailPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
-
+    const [quality, setQuality] = useState(1);
     useEffect(() => {
         const fetchProductDetails = async () => {
             const fetchedProduct = await getProductId(id);
@@ -15,6 +17,24 @@ const ProductDetailPage = () => {
         };
         fetchProductDetails();
     }, [id]);
+    const handlePlusQuality = () => {
+        setQuality(quality + 1);
+    };
+    const handleMinusQuality = () => {
+        if (quality > 1) {
+            setQuality(quality - 1);
+        }
+    }
+    // const handleAddToCart = () => {
+    // eslint-disable-next-line no-unused-vars
+    const carts = useSelector(store => store.cart?.items || []);
+    console.log(carts);
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        console.log("Product ID:", product.productId);
+        console.log("Quantity:", quality);
+        dispatch(addToCart({ productId: product.productId, quantity: quality }));
+    };
 
     if (!product) {
         return <div>Loading...</div>;
@@ -60,18 +80,21 @@ const ProductDetailPage = () => {
                     </div>
                     <div className="count">
                         <p>Số lượng</p>
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
+                        <button onClick={handleMinusQuality}>-</button>
+                        <span>{quality}</span>
+                        <button onClick={handlePlusQuality}>+</button>
                     </div>
                     <div className="btn-cart">
                         <button>MUA NGAY</button>
+                    </div>
+                    <div className="btn-cart">
+                        <button onClick={handleAddToCart}>THÊM GIỎ HÀNG</button>
                     </div>
                 </div>
             </div>
             <div className="container-description">
                 <h2>Mô tả sản phẩm</h2>
-
+                <h4>{product.description}</h4>
             </div>
             <Footer />
         </>

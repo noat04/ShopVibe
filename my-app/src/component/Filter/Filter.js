@@ -10,7 +10,6 @@ const Filter = () => {
     const navigate = useNavigate();
     const navigatePrice = useNavigate();
 
-
     const handleMouseEnterPrice = () => {
         setOpenPrice(true);
     };

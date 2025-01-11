@@ -38,7 +38,10 @@ const sortHighToLow = async () => {
     const url = `https://localhost:7180/api/Products/GetAllProductsDesc/desc`;
     return fetchData(url);
 }
-
+const getPagesProduct = async (page) => {
+    const url = `https://localhost:7180/api/Products/GetPagedProducts/paged?page=${page}`;  // Use 'page' instead of 'i'
+    return fetchData(url);
+};
 
 // Xuất hàm API
-export { getAllProducts, getProductId, getDataFilter, sortLowToHigh, sortHighToLow }; // Export hàm getAllProducts
+export { getAllProducts, getProductId, getDataFilter, sortLowToHigh, sortHighToLow, getPagesProduct }; // Export hàm getAllProducts

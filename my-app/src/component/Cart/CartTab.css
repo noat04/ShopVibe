@@ -1,0 +1,11 @@
+.translate-x-full {
+    transform: translateX(100%);
+    /* Đẩy hoàn toàn ra ngoài viewport */
+    transition: transform 0.3s ease-in-out;
+}
+
+.translate-x-0 {
+    transform: translateX(0);
+    /* Hiển thị trong viewport */
+    transition: transform 0.3s ease-in-out;
+}

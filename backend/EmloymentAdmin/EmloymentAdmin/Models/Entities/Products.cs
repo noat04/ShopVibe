@@ -31,6 +31,9 @@ namespace EmloymentAdmin.Models.Entities
 
         [BsonElement("image")]
         public string Image { get; set; }
+
+        [BsonElement("description")]
+        public string Description { get; set; }
         //public List<string>? Images { get; set; }  // Hình ảnh cho biến thể
 
         //[BsonIgnore]
