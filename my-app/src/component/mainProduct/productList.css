@@ -10,7 +10,7 @@
 }
 
 .product-container>* {
-    /* Style cho từng sản phẩm */
+    /* Style cho từng sản phẩm */   
     border: 1px solid #ccc;
     padding: 16px;
     text-align: left;

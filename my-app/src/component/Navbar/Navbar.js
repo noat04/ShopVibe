@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 import "./Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toggleStatusTab } from "../../stores/cartData";
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [searchValue, setSearchValue] = useState(""); // Quản lý trạng thái tìm kiếm
   const dispatch = useDispatch();
 
@@ -69,6 +73,12 @@ const Navbar = () => {
 
   };
 
+  const handleOpenCart = () => {
+    dispatch(toggleStatusTab());
+    navigate("/cart");
+  };
+
+
   // Xử lý đăng nhập/đăng ký
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,14 +102,40 @@ const Navbar = () => {
         });
         const result = await response.json();
         if (response.ok) {
-          alert("Đăng ký thành công!");
+          toast.success(`Đăng nhập thành công`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           handleCloseForm();
         } else {
-          alert(result.message || "Đăng ký thất bại!");
+          toast.error(result.message || `Đăng ký thất bại`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          // alert(result.message || "Đăng ký thất bại!");
         }
       } catch (error) {
-        console.error("Đăng ký lỗi:", error);
-        alert("Lỗi hệ thống khi đăng ký!");
+        toast.error(`${error}Đăng ký thất bại`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // console.error("Đăng ký lỗi:", error);
+        // alert("Lỗi hệ thống khi đăng ký!");
       }
     } else {
       // Xử lý đăng nhập
@@ -114,14 +150,41 @@ const Navbar = () => {
         });
         const result = await response.json();
         if (response.ok) {
-          alert("Đăng nhập thành công!");
+          toast.success(`Đăng nhập thành công`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          // alert("Đăng nhập thành công!");
           handleCloseForm();
         } else {
-          alert(result.message || "Đăng nhập thất bại!");
+          toast.error(result.message || `Đăng nhập thất bại`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          // alert(result.message || "Đăng nhập thất bại!");
         }
       } catch (error) {
-        console.error("Đăng nhập lỗi:", error);
-        alert("Lỗi hệ thống khi đăng nhập!");
+        toast.error(`${error}Đăng nhập thất bại`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // console.error("Đăng nhập lỗi:", error);
+        // alert("Lỗi hệ thống khi đăng nhập!");
       }
     }
   };
@@ -204,6 +267,7 @@ const Navbar = () => {
               src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"
               alt="Cart"
               className="navbar-icon"
+              onClick={handleOpenCart}
             />
             <span className="cart-count"> ({totalQuanlity})</span>
 

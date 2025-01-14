@@ -12,7 +12,7 @@ const CartTab = () => {
 
     return (
         <div
-            className={`cart-tab position-fixed top-0 end-0 bg-dark text-white w-25 h-100
+            className={`cart-tab position-fixed top-0 end-0 bg-dark text-white w-25 h-100 z-index:1050
             ${statusTab ? 'translate-x-0' : 'translate-x-full'}`}
             style={{ transition: 'transform 0.3s ease' }}
         >

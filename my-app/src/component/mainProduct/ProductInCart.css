@@ -1,0 +1,62 @@
+.cart-container {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 20px;
+    width: auto;
+}
+
+.cart-container>* {
+    /* Style cho từng sản phẩm */
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20px 20px 20px 20px;
+    text-align: left;
+    background-color: #f9f9f9;
+    /* Sử dụng flexbox cho left và right */
+    /* Màu nền nhẹ */
+    /* border-radius: 8px; */
+}
+
+.cart-container img {
+    width: 70%;
+    /* Ảnh chiếm toàn bộ chiều rộng */
+    height: 150px;
+    border-radius: 8px;
+    /* Bo tròn ảnh */
+}
+
+/* .cart-product-link {
+    text-decoration: none;
+    color: inherit;
+    width: auto;
+} */
+
+.cart-item {
+    display: flex;
+}
+
+.cart-item-left {
+    width: 50%;
+}
+
+.cart-item-right {
+    width: 50%;
+    display: flex;
+    /* Sử dụng Flexbox */
+    flex-direction: column;
+    /* Sắp xếp các phần tử theo chiều dọc */
+    gap: 5px;
+    /* Khoảng cách giữa các phần tử là 5px */
+}
+
+.cart-item-right span {
+    text-decoration: none;
+    color: inherit;
+    width: auto;
+}
+
+.cart-item-right span:hover {
+    cursor: pointer;
+    /* Đổi con trỏ thành "tay chỉ" khi hover */
+}

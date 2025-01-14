@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    items: [],
-    statusTab: false // Sửa chính tả
+    items: JSON.parse(localStorage.getItem('cartItems')) || [], // Lấy từ localStorage nếu có
+    statusTab: false,
 };
 
 const cartData = createSlice({
@@ -20,9 +20,37 @@ const cartData = createSlice({
                 existingItem.quantity += quantity;
             } else {
                 // Thêm sản phẩm mới vào giỏ hàng
-                state.items.push({ productId, quantity });
+                state.items.push(action.payload);
             }
+            // Cập nhật vào localStorage
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+
         },
+        deleteToCart(state, action) {
+            const { productId } = action.payload;
+            console.log('Deleting productId:', productId);
+
+            // Make sure you access the correct structure and mutate it properly
+            const existingItemIndex = state.items.findIndex(item => item.product.productId === productId);
+
+            if (existingItemIndex !== -1) {
+                // Remove the item from the cart
+                state.items.splice(existingItemIndex, 1);
+                console.log('Product removed, updated cart:', state.items);
+            } else {
+                console.error('Product not found in cart');
+            }
+
+            // Store updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+        }
+        ,
+        // Không nên có reducer trả về giá trị, nên thay vào đó là action
+        loadCartFromLocalStorage(state) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            state.items = cartItems; // Cập nhật trạng thái với cartItems lấy từ localStorage
+        }
+        ,
         changeQuanlity(state, action) {
             const { productId, quantity } = action.payload;
 
@@ -44,5 +72,5 @@ const cartData = createSlice({
     }
 });
 
-export const { addToCart, changeQuanlity, toggleStatusTab } = cartData.actions;
+export const { addToCart, deleteToCart, changeQuanlity, toggleStatusTab, loadCartFromLocalStorage } = cartData.actions;
 export default cartData.reducer;

@@ -8,7 +8,7 @@ namespace EmploymentAdmin.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : ControllerBase
-    {
+    {       
         [HttpGet]
         public IActionResult Get()
         {

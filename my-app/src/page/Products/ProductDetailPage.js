@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { getProductId } from '../../fetchData';
 import { useParams } from 'react-router-dom';
 import '../../component/mainProduct/ProductDetails.css';
@@ -33,7 +34,17 @@ const ProductDetailPage = () => {
     const handleAddToCart = () => {
         console.log("Product ID:", product.productId);
         console.log("Quantity:", quality);
-        dispatch(addToCart({ productId: product.productId, quantity: quality }));
+        dispatch(addToCart({ product, quantity: quality }));
+        // Hiển thị thông báo
+        toast.success(`${product.productName} đã được thêm vào giỏ hàng!`, {
+            position: "top-right",
+            autoClose: 3000, // Thời gian tự động đóng (ms)
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     };
 
     if (!product) {

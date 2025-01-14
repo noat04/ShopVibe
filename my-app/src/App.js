@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter, createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Login from './page/Login/login';
 import Register from './page/Register/Register';
 import Product from './page/Products/Products';
@@ -34,6 +35,7 @@ function App() {
           {/* <Route path='*' element={<NoPage />} /> */}
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }
