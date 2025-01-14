@@ -1,76 +1,74 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-    items: JSON.parse(localStorage.getItem('cartItems')) || [], // Lấy từ localStorage nếu có
-    statusTab: false,
+// Function to load cart from localStorage
+const loadCartFromLocalStorage = () => {
+    try {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')); // Lấy giỏ hàng từ localStorage
+        return cartItems || []; // Nếu không có, trả về mảng rỗng
+    } catch (error) {
+        console.error('Failed to load cart from localStorage:', error);
+        return []; // Nếu có lỗi, trả về mảng rỗng
+    }
 };
 
-const cartData = createSlice({
-    name: 'cartData',
-    initialState,
-    reducers: {
-        addToCart(state, action) {
+// Initial State
+const initialState = {
+    items: loadCartFromLocalStorage(), // Tải giỏ hàng từ localStorage
+    statusTab: false, // Giả sử bạn cần có trạng thái của tab này
+};
+
+// Action Types
+const ADD_TO_CART = 'ADD_TO_CART';
+const TOGGLE_STATUS_TAB = 'TOGGLE_STATUS_TAB';
+const DELETE_FROM_CART = 'DELETE_FROM_CART';
+
+// Reducer
+const cartReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_TO_CART: {
             const { productId, quantity } = action.payload;
-
-            // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
-            const existingItem = state.items.find(item => item.productId === productId);
-
+            const existingItem = state.items.find((item) => item.productId === productId);
             if (existingItem) {
-                // Cập nhật số lượng
-                existingItem.quantity += quantity;
+                return {
+                    ...state,
+                    items: state.items.map(item =>
+                        item.productId === productId
+                            ? { ...item, quantity: item.quantity + quantity }
+                            : item
+                    ),
+                };
             } else {
-                // Thêm sản phẩm mới vào giỏ hàng
-                state.items.push(action.payload);
+                return {
+                    ...state,
+                    items: [...state.items, action.payload],
+                };
             }
-            // Cập nhật vào localStorage
-            localStorage.setItem('cartItems', JSON.stringify(state.items));
-
-        },
-        deleteToCart(state, action) {
-            const { productId } = action.payload;
-            console.log('Deleting productId:', productId);
-
-            // Make sure you access the correct structure and mutate it properly
-            const existingItemIndex = state.items.findIndex(item => item.product.productId === productId);
-
-            if (existingItemIndex !== -1) {
-                // Remove the item from the cart
-                state.items.splice(existingItemIndex, 1);
-                console.log('Product removed, updated cart:', state.items);
-            } else {
-                console.error('Product not found in cart');
-            }
-
-            // Store updated cart to localStorage
-            localStorage.setItem('cartItems', JSON.stringify(state.items));
         }
-        ,
-        // Không nên có reducer trả về giá trị, nên thay vào đó là action
-        loadCartFromLocalStorage(state) {
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            state.items = cartItems; // Cập nhật trạng thái với cartItems lấy từ localStorage
-        }
-        ,
-        changeQuanlity(state, action) {
-            const { productId, quantity } = action.payload;
-
-            // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
-            const existingItem = state.items.find(item => item.productId === productId);
-
-            if (existingItem) {
-                if (quantity > 0) {
-                    existingItem.quantity = quantity; // Cập nhật số lượng
-                } else {
-                    // Xóa sản phẩm nếu số lượng bằng 0
-                    state.items = state.items.filter(item => item.productId !== productId);
-                }
-            }
-        },
-        toggleStatusTab(state) {
-            state.statusTab = !state.statusTab; // Toggle trạng thái
-        }
+        case DELETE_FROM_CART:
+            return {
+                ...state,
+                items: state.items.filter(item => item.productId !== action.payload.productId),
+            };
+        case TOGGLE_STATUS_TAB:
+            return { ...state, statusTab: !state.statusTab };
+        default:
+            return state;
     }
+};
+
+// Action creators
+const addToCart = (productId, quantity) => ({
+    type: ADD_TO_CART,
+    payload: { productId, quantity }
 });
 
-export const { addToCart, deleteToCart, changeQuanlity, toggleStatusTab, loadCartFromLocalStorage } = cartData.actions;
-export default cartData.reducer;
+const toggleStatusTab = () => ({
+    type: TOGGLE_STATUS_TAB
+});
+
+const deleteFromCart = (productId) => ({
+    type: DELETE_FROM_CART,
+    payload: { productId },
+});
+
+// Export
+export default cartReducer;
+export { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage };

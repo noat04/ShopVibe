@@ -1,31 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { toast } from 'react-toastify';
 import "./Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { useSelector, useDispatch } from "react-redux";
+import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage } from '../../stores/cartData';
 import { useNavigate } from "react-router-dom";
-import { toggleStatusTab } from "../../stores/cartData";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const [searchValue, setSearchValue] = useState(""); // Quản lý trạng thái tìm kiếm
-  const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState("");  // Quản lý trạng thái tìm kiếm
+  const [totalQuantity, setTotalQuantity] = useState(0);  // Quản lý số lượng giỏ hàng
+  const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const [totalQuanlity, setTotalQuanlity] = useState(0);
-  const carts = useSelector((store) => store.cart?.items || []);
+  // Tính tổng số lượng trong giỏ hàng khi cart thay đổi
   useEffect(() => {
     let total = 0;
-    carts.forEach((item) => {
+    state.items.forEach((item) => {
       total += item.quantity;
-    }
-    );
-    setTotalQuanlity(total);
-  }, [carts]);
+    });
+    setTotalQuantity(total);
+  }, [state.items]);
 
+  // Xử lý hành động mở/đóng tab giỏ hàng
   const handleOpenTabCart = () => {
     dispatch(toggleStatusTab());
   };
+
+  // Xử lý tìm kiếm
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(`Searching for: ${searchValue}`);
+  };
+
+  // Xử lý thêm sản phẩm vào giỏ hàng
+  const handleAddToCart = (productId, quantity) => {
+    dispatch(addToCart(productId, quantity));
+    toast.success('Sản phẩm đã được thêm vào giỏ hàng!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
+  const handleOpenCart = () => {
+    dispatch(toggleStatusTab());
+    navigate("/cart");
+  };
+
   const [isRegister, setIsRegister] = useState(false); // Xác định hiển thị form đăng ký hay đăng nhập
   const [showForm, setShowForm] = useState(false); // Quản lý trạng thái hiển thị form
   const [formData, setFormData] = useState({
@@ -65,20 +89,6 @@ const Navbar = () => {
       confirmPassword: "",
     });
   };
-
-  // Xử lý tìm kiếm
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(`Searching for: ${searchValue}`);
-
-  };
-
-  const handleOpenCart = () => {
-    dispatch(toggleStatusTab());
-    navigate("/cart");
-  };
-
-
   // Xử lý đăng nhập/đăng ký
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -262,16 +272,13 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="navbar-component d-flex align-items-center ms-3 rounded-full" onClick={handleOpenTabCart}>
-            {/* <a className="cart-link" href="/cart" > */}
             <img
               src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png"
               alt="Cart"
               className="navbar-icon"
               onClick={handleOpenCart}
             />
-            <span className="cart-count"> ({totalQuanlity})</span>
-
-            {/* </a> */}
+            <span className="cart-count"> ({totalQuantity})</span>
             <img
               src="https://cdn-icons-png.flaticon.com/128/5001/5001572.png"
               alt="Notification"

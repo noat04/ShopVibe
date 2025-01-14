@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\",
+  "WorkspaceRootPath": "D:\\ShopVibe\\backend\\EmloymentAdmin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AdminController.cs",
+              "DocumentMoniker": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AdminController.cs",
               "RelativeToolTip": "EmloymentAdmin\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAuwAsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-11T10:03:46.815Z",
               "EditorCaption": ""

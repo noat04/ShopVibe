@@ -884,3 +884,5 @@ D:\websitenhom\noat04.github.io\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\o
 D:\websitenhom\noat04.github.io\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\obj\Debug\net8.0\ref\EmploymentAdmin.dll
 D:\websitenhom\noat04.github.io\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\bin\Debug\net8.0\PagedList.dll
 D:\websitenhom\noat04.github.io\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\bin\Debug\net8.0\PagedList.Mvc.dll
+D:\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\bin\Debug\net8.0\PagedList.dll
+D:\ShopVibe\backend\EmloymentAdmin\EmloymentAdmin\bin\Debug\net8.0\PagedList.Mvc.dll

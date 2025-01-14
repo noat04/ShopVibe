@@ -17,13 +17,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} path="/" />
-          {/* <Route path='/home' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/products/:category' element={<Product />} />
-          <Route path='/products/:sort' element={<Product />} />
-          <Route path='/products' element={<Product />} />
-          <Route path='/product-detail/:id' element={<ProductDetailPage />} /> */}
           <Route index element={<Home />} path="/" />
           <Route path='/home' element={<Home />} />
           <Route path='/products/:category' element={<Product />} />
@@ -32,7 +25,6 @@ function App() {
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
           <Route path='/cart' element={<Cart />} />
-          {/* <Route path='*' element={<NoPage />} /> */}
         </Routes>
       </BrowserRouter>
       <ToastContainer />

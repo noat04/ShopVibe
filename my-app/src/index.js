@@ -1,20 +1,13 @@
-import { Provider } from 'react-redux'; // Make sure to import Provider
-import { store } from './stores';  // Named import
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-
-
+import { CartProvider } from './stores/CartContext'; // Import CartProvider
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
+  // Bao bọc ứng dụng bằng CartProvider để cung cấp cart context cho toàn bộ ứng dụng
+  <CartProvider>
     <App />
-  </Provider>
-  // </React.StrictMode>
+  </CartProvider>
 );
-
-
-

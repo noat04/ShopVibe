@@ -1,33 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import Navbar from '../../component/Navbar/Navbar';
-import { useDispatch, useSelector } from 'react-redux';
 import ProductInCart from '../../component/mainProduct/ProductInCart';
-import { loadCartFromLocalStorage } from '../../stores/cartData'; // Import action để load từ localStorage
+import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage } from '../../stores/cartData';
 import '../../component/mainProduct/ProductInCart.css';
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart || { items: [] });
-    console.log(localStorage.getItem('cartItems'));  // Kiểm tra xem dữ liệu giỏ hàng có tồn tại trong localStorage không
+    const [state, dispatch] = useReducer(cartReducer, undefined, (initial) => ({
+        ...initial, // load cart from localStorage initially
+        items: JSON.parse(localStorage.getItem('cartItems')) || [] // Giỏ hàng ban đầu từ LocalStorage
+    }));
+    const { items } = state;
 
-    const [loading, setLoading] = useState(true);
-
-    // useEffect để load giỏ hàng từ localStorage vào Redux store
+    // Ghi lại giỏ hàng khi state items thay đổi
     useEffect(() => {
-        dispatch(loadCartFromLocalStorage());  // Load giỏ hàng từ localStorage
-        setLoading(false);  // Đặt loading thành false sau khi load xong
-    }, [dispatch]);  // Chạy một lần khi component mount
+        localStorage.setItem('cartItems', JSON.stringify(items));
+    }, [items]); // Lưu lại vào LocalStorage khi thay đổi giỏ hàng
 
     return (
         <div>
             <Navbar />
             <h1>Cart</h1>
             <div className="cart-container">
-                {loading ? (
-                    <p>Loading...</p>
-                ) : cart.items.length > 0 ? (
-                    cart.items.map((item, index) => (
-                        <ProductInCart key={item.productId || index} data={item} />
+                {items.length > 0 ? (
+                    items.map((item, index) => (
+                        <ProductInCart
+                            key={item.productId || index}
+                            data={item}
+                            deleteFromCart={(productId) => dispatch(deleteFromCart(productId))}
+                        />
+
                     ))
                 ) : (
                     <h1>NO ITEMS</h1>
@@ -38,4 +39,3 @@ const Cart = () => {
 }
 
 export default Cart;
-

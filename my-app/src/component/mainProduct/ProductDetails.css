@@ -115,12 +115,12 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 100px;
-    gap: 20px;
+    gap: 50px;
 }
 
 .btn-cart button {
     height: 60px;
-    width: 500px;
+    width: 250px;
     background-color: black;
     color: white;
     font-size: 24px;
@@ -130,4 +130,12 @@
 
 .btn-cart button:hover {
     transform: scale(1.1);
+}
+
+.container-description {
+    padding: 20px;
+}
+
+.container-description p {
+    font-size: 18px;
 }
