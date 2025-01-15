@@ -14,12 +14,10 @@ const Navbar = () => {
 
   // Tính tổng số lượng trong giỏ hàng khi cart thay đổi
   useEffect(() => {
-    let total = 0;
-    state.items.forEach((item) => {
-      total += item.quantity;
-    });
-    setTotalQuantity(total);
-  }, [state.items]);
+    let uniqueItemsCount = state.items.length;
+    setTotalQuantity(uniqueItemsCount);  // Tính số sản phẩm khác nhau trong giỏ hàng
+  }, [state.items]); // Khi thay đổi giỏ hàng (state.items) sẽ cập nhật totalQuantity
+
 
   // Xử lý hành động mở/đóng tab giỏ hàng
   const handleOpenTabCart = () => {
@@ -278,7 +276,7 @@ const Navbar = () => {
               className="navbar-icon"
               onClick={handleOpenCart}
             />
-            <span className="cart-count"> ({totalQuantity})</span>
+            <span className="cart-count"> ({totalQuantity})</span>  {/* Hiển thị số lượng sản phẩm khác nhau */}
             <img
               src="https://cdn-icons-png.flaticon.com/128/5001/5001572.png"
               alt="Notification"

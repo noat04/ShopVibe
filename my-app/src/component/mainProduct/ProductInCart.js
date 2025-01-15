@@ -9,8 +9,8 @@ const ProductInCart = ({ data, deleteFromCart }) => {
     const image = data?.product?.image || 'default-image-url';
 
     const handleDelete = () => {
-        deleteFromCart(data.productId);  // Gọi hành động delete từ props
-        toast.success(`${productName} đã được xóa giỏ hàng!`);
+        deleteFromCart(data.productId, data.color, data.size); // Call delete action from props
+        toast.success(`${productName} đã được xóa khỏi giỏ hàng!`);
     };
 
     return (

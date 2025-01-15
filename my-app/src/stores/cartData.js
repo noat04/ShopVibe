@@ -1,72 +1,87 @@
 // Function to load cart from localStorage
 const loadCartFromLocalStorage = () => {
     try {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')); // Lấy giỏ hàng từ localStorage
-        return cartItems || []; // Nếu không có, trả về mảng rỗng
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')); // Get cart from localStorage
+        return cartItems || []; // Return empty array if no items
     } catch (error) {
         console.error('Failed to load cart from localStorage:', error);
-        return []; // Nếu có lỗi, trả về mảng rỗng
+        return []; // If error occurs, return empty array
     }
 };
 
 // Initial State
 const initialState = {
-    items: loadCartFromLocalStorage(), // Tải giỏ hàng từ localStorage
-    statusTab: false, // Giả sử bạn cần có trạng thái của tab này
+    items: loadCartFromLocalStorage(), // Load cart from localStorage
+    statusTab: false, // Tab status (if needed)
 };
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART';
-const TOGGLE_STATUS_TAB = 'TOGGLE_STATUS_TAB';
 const DELETE_FROM_CART = 'DELETE_FROM_CART';
+const TOGGLE_STATUS_TAB = 'TOGGLE_STATUS_TAB';
 
 // Reducer
-const cartReducer = (state = initialState, action) => {
+const cartReducer = (state, action) => {
     switch (action.type) {
         case ADD_TO_CART: {
-            const { productId, quantity } = action.payload;
-            const existingItem = state.items.find((item) => item.productId === productId);
-            if (existingItem) {
-                return {
-                    ...state,
-                    items: state.items.map(item =>
-                        item.productId === productId
-                            ? { ...item, quantity: item.quantity + quantity }
-                            : item
-                    ),
-                };
+            const { product, quantity, color, size } = action.payload;
+
+            // Check if the product with the same attributes already exists in the cart
+            const existingItemIndex = state.items.findIndex(item =>
+                item.product.productId === product.productId
+            );
+
+            if (existingItemIndex !== -1) {
+                // If product already in cart, increase the quantity
+                const updatedItems = state.items.map((item, index) =>
+                    index === existingItemIndex
+                        ? { ...item, quantity: item.quantity + quantity } // Increase quantity
+                        : item
+                );
+                // Update cart in localStorage
+                localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+                return { ...state, items: updatedItems };
             } else {
-                return {
-                    ...state,
-                    items: [...state.items, action.payload],
-                };
+                // Add new item to the cart
+                const updatedItems = [...state.items, { ...action.payload }];
+                // Update cart in localStorage
+                localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+                return { ...state, items: updatedItems };
             }
         }
-        case DELETE_FROM_CART:
-            return {
-                ...state,
-                items: state.items.filter(item => item.productId !== action.payload.productId),
-            };
+
+        case DELETE_FROM_CART: {
+            const updatedItems = state.items.filter(item =>
+                item.productId !== action.payload.productId ||
+                item.color !== action.payload.color ||
+                item.size !== action.payload.size
+            );
+            // Update cart in localStorage after item deletion
+            localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+            return { ...state, items: updatedItems };
+        }
+
         case TOGGLE_STATUS_TAB:
             return { ...state, statusTab: !state.statusTab };
+
         default:
             return state;
     }
 };
 
 // Action creators
-const addToCart = (productId, quantity) => ({
+const addToCart = (product, quantity, color, size) => ({
     type: ADD_TO_CART,
-    payload: { productId, quantity }
+    payload: { product, quantity, color, size }
+});
+
+const deleteFromCart = (productId, color, size) => ({
+    type: DELETE_FROM_CART,
+    payload: { productId, color, size },
 });
 
 const toggleStatusTab = () => ({
     type: TOGGLE_STATUS_TAB
-});
-
-const deleteFromCart = (productId) => ({
-    type: DELETE_FROM_CART,
-    payload: { productId },
 });
 
 // Export
