@@ -10,7 +10,7 @@
 }
 
 .product-container>* {
-    /* Style cho từng sản phẩm */   
+    /* Style cho từng sản phẩm */
     border: 1px solid #ccc;
     padding: 16px;
     text-align: left;
@@ -55,4 +55,35 @@
     font-size: 20px;
     color: red;
     font-weight: bold;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #ddd;
+}
+
+.pagination .active {
+    background-color: black;
+    color: white;
 }

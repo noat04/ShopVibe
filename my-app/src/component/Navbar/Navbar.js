@@ -4,19 +4,20 @@ import "./Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage } from '../../stores/cartData';
+import { saveToken } from "../AuthStorage/AuthStorage";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
-
   const [searchValue, setSearchValue] = useState("");  // Quản lý trạng thái tìm kiếm
   const [totalQuantity, setTotalQuantity] = useState(0);  // Quản lý số lượng giỏ hàng
   const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [user, setUser] = useState(null);
 
-  // Tính tổng số lượng trong giỏ hàng khi cart thay đổi
+  // Tính tổng số lượng trong giỏ hàng
   useEffect(() => {
     let uniqueItemsCount = state.items.length;
-    setTotalQuantity(uniqueItemsCount);  // Tính số sản phẩm khác nhau trong giỏ hàng
-  }, [state.items]); // Khi thay đổi giỏ hàng (state.items) sẽ cập nhật totalQuantity
+    setTotalQuantity(uniqueItemsCount);
+  }, [state.items]);
 
 
   // Xử lý hành động mở/đóng tab giỏ hàng
@@ -92,7 +93,6 @@ const Navbar = () => {
     e.preventDefault();
 
     if (isRegister) {
-      // Xử lý đăng ký
       if (formData.password !== formData.confirmPassword) {
         alert("Mật khẩu và xác nhận mật khẩu không khớp!");
         return;
@@ -130,7 +130,6 @@ const Navbar = () => {
             draggable: true,
             progress: undefined,
           });
-          // alert(result.message || "Đăng ký thất bại!");
         }
       } catch (error) {
         toast.error(`${error}Đăng ký thất bại`, {
@@ -142,8 +141,6 @@ const Navbar = () => {
           draggable: true,
           progress: undefined,
         });
-        // console.error("Đăng ký lỗi:", error);
-        // alert("Lỗi hệ thống khi đăng ký!");
       }
     } else {
       // Xử lý đăng nhập
@@ -167,7 +164,7 @@ const Navbar = () => {
             draggable: true,
             progress: undefined,
           });
-          // alert("Đăng nhập thành công!");
+          console.log(result);
           handleCloseForm();
         } else {
           toast.error(result.message || `Đăng nhập thất bại`, {
@@ -179,7 +176,6 @@ const Navbar = () => {
             draggable: true,
             progress: undefined,
           });
-          // alert(result.message || "Đăng nhập thất bại!");
         }
       } catch (error) {
         toast.error(`${error}Đăng nhập thất bại`, {
@@ -191,8 +187,6 @@ const Navbar = () => {
           draggable: true,
           progress: undefined,
         });
-        // console.error("Đăng nhập lỗi:", error);
-        // alert("Lỗi hệ thống khi đăng nhập!");
       }
     }
   };
@@ -282,17 +276,30 @@ const Navbar = () => {
               alt="Notification"
               className="navbar-icon"
             />
-            <img
-              src="https://cdn-icons-png.flaticon.com/128/456/456212.png"
-              alt="User"
-              className="navbar-icon"
-            />
+            <div className="navbar-user-icon">
+              {user ? (
+                <span className="user-name">{user}</span>  // Hiển thị tên người dùng
+              ) : (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/456/456212.png"
+                  alt="User"
+                  className="navbar-icon"
+                />
+              )}
+            </div>
           </div>
           {/* Login/Signup */}
           <div className="d-flex">
-            <a href="" onClick={handleShowLogin}>Đăng nhập</a>
-            <span>/</span>
-            <a href="" onClick={handleShowRegister}>Đăng ký</a>
+            {user ? (
+              // Nếu người dùng đã đăng nhập, hiển thị tên người dùng
+              <span>Xin chào, {user}</span>
+            ) : (
+              <>
+                <a href="" onClick={handleShowLogin}>Đăng nhập</a>
+                <span>/</span>
+                <a href="" onClick={handleShowRegister}>Đăng ký</a>
+              </>
+            )}
           </div>
         </div>
       </div>

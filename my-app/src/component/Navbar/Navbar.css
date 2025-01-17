@@ -129,6 +129,10 @@
     color: black;
 }
 
+/* .d-flex span {
+    position: absolute;
+} */
+
 .d-flex a:hover {
     text-decoration: underline;
 }

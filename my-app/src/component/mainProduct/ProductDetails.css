@@ -43,7 +43,7 @@
 }
 
 .product-price {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: bold;
     color: red;
 
@@ -55,6 +55,19 @@
     align-items: center;
     gap: 20px;
     margin-top: 30px;
+}
+
+.btn-size.active {
+    background-color: #000;
+    /* Nền đen */
+    color: #fff;
+    /* Chữ trắng */
+    border: 2px solid #000;
+}
+
+.btn-color.active {
+    border: solid 2px orangered;
+    transform: scale(1.1);
 }
 
 .btn-color {
