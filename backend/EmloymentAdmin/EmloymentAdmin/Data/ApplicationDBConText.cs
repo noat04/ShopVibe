@@ -11,6 +11,7 @@ namespace EmloymentAdmin.Data
         }
 
         public DbSet<Employment> Employee { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
     }
 }

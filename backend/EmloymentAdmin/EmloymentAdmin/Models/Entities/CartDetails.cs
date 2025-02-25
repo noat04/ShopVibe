@@ -17,8 +17,13 @@ namespace EmploymentAdmin.Models.Entities
         [BsonElement("price")]
         public decimal Price { get; set; }
 
-        [BsonElement("quality")]
-        public decimal Quality { get; set; }
+        [BsonElement("quantity")]
+        public int Quantity { get; set; }
 
+        [BsonElement("size")]
+        public string Size { get; set; }
+
+        [BsonElement("color")]
+        public string Color { get; set; }
     }
 }

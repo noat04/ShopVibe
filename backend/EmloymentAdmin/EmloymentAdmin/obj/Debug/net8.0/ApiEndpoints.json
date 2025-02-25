@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "EmploymentAdmin.Controllers.AccountController",
+    "Method": "History",
+    "RelativePath": "api/Account/History",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.AccountController",
+    "Method": "Index",
+    "RelativePath": "api/Account/Index",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EmploymentAdmin.Controllers.AdminController",
     "Method": "Get",
     "RelativePath": "api/Admin",
@@ -43,6 +63,16 @@
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "GoogleResponse",
+    "RelativePath": "api/Auth/GoogleResponse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
     "Method": "Intospect",
     "RelativePath": "api/Auth/intospect",
     "HttpMethod": "POST",
@@ -51,21 +81,11 @@
     "Parameters": [
       {
         "Name": "token",
-        "Type": "System.String",
+        "Type": "EmploymentAdmin.Models.Dtos.IntrospectTokenDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.AuthController",
@@ -85,6 +105,79 @@
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "LoginByGoogle",
+    "RelativePath": "api/Auth/login-google",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "api/Auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "NewPassword",
+    "RelativePath": "api/Auth/NewPassword",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EmploymentAdmin.Models.Dtos.RefreshTokenRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EmploymentAdmin.Models.Dtos.TokenResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
     "Method": "Register",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
@@ -100,6 +193,153 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "SendMailForgotPassword",
+    "RelativePath": "api/Auth/SendMailForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EmploymentAdmin.Models.Entities.AspUserModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "IsAccountCreatedSuccessfully",
+    "RelativePath": "api/Auth/state",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "jsonResponse",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "UpdateNewPassword",
+    "RelativePath": "api/Auth/UpdatePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EmploymentAdmin.Models.Dtos.UpdatePasswordModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.CartController",
+    "Method": "AddCartDetails",
+    "RelativePath": "api/Cart/AddCartDetails/{cartId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "cartDetailsDto",
+        "Type": "System.Collections.Generic.List\u00601[[EmploymentAdmin.Models.Dtos.CartDetailDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.CartController",
+    "Method": "CreateCart",
+    "RelativePath": "api/Cart/CreateCart/{customer}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customer",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.CartController",
+    "Method": "DeleteCart",
+    "RelativePath": "api/Cart/DeleteCart/{cartId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "cartDetailsDto",
+        "Type": "System.Collections.Generic.List\u00601[[EmploymentAdmin.Models.Dtos.CartDetailDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EmploymentAdmin.Models.Dtos.CartDetailDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.CartController",
+    "Method": "DeleteCartOne",
+    "RelativePath": "api/Cart/DeleteCartOne/{cartId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "cartDetailsDto",
+        "Type": "EmploymentAdmin.Models.Dtos.CartDetailDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EmploymentAdmin.Controllers.CartController",
     "Method": "GetAllCart",
     "RelativePath": "api/Cart/GetAllCart",
@@ -109,7 +349,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[EmploymentAdmin.Models.Dtos.CartDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EmploymentAdmin.Models.Dtos.Cart_CustomerDto, EmploymentAdmin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -121,28 +361,8 @@
   },
   {
     "ContainingType": "EmploymentAdmin.Controllers.CartController",
-    "Method": "GetCart",
-    "RelativePath": "api/Cart/GetCart",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "EmploymentAdmin.Models.Dtos.CartDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "EmploymentAdmin.Controllers.CartController",
-    "Method": "GetCartByCustomerId",
-    "RelativePath": "api/Cart/GetCartByCustomerId/cart/{customerId}",
+    "Method": "GetCartDetails",
+    "RelativePath": "api/Cart/GetCartDetails/{customerId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -155,7 +375,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "EmploymentAdmin.Models.Dtos.CartDto",
+        "Type": "EmploymentAdmin.Models.Dtos.Cart_CustomerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -184,6 +404,85 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.CustomersController",
+    "Method": "DeleteCustomer",
+    "RelativePath": "api/Customers/DeleteCustomer/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.CustomersController",
+    "Method": "GetAllCustomers",
+    "RelativePath": "api/Customers/GetAllCustomers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.CustomersController",
+    "Method": "GetCustomerById",
+    "RelativePath": "api/Customers/GetCustomerById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.CustomersController",
+    "Method": "GetCustomersByUserId",
+    "RelativePath": "api/Customers/GetCustomersByUserId/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.CustomersController",
+    "Method": "UpdateCustomer",
+    "RelativePath": "api/Customers/UpdateCustomer/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateCustomerDto",
+        "Type": "EmloymentAdmin.Models.Dtos.UpdateCustomerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.EmployeesController",
@@ -259,6 +558,32 @@
       {
         "Name": "updateEmployeeDto",
         "Type": "EmloymentAdmin.Models.Dtos.UpdateEmployeeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.PaymentController",
+    "Method": "PaymentCallbackVnpay",
+    "RelativePath": "api/Payment/Callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.PaymentController",
+    "Method": "CreatePayment",
+    "RelativePath": "api/Payment/CreatePayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EmploymentAdmin.Models.VNPay.PaymentInformationModel",
         "IsRequired": true
       }
     ],

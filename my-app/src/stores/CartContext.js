@@ -7,6 +7,7 @@ const CartContext = createContext();
 // Cart Provider that provides the cart state and actions
 export const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
+    const total = state.items.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
 
     // Update cart in localStorage when cart items change
     useEffect(() => {
@@ -25,7 +26,7 @@ export const CartProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ state, ...cartActions }}>
+        <CartContext.Provider value={{ state, ...cartActions, total }}>
             {children}
         </CartContext.Provider>
     );

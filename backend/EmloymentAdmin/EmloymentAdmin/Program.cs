@@ -8,6 +8,15 @@ using EmploymentAdmin.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using EmploymentAdmin.Models.Mapping;
+using EmploymentAdmin.Service.VNPay;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.CodeAnalysis.Options;
+using EmploymentAdmin.Models.Entities;
+using EmploymentAdmin.Reponsitory;
+using EmploymentAdmin.Service.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,11 +26,22 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigins",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000", "http://ShopVibe.com") // Thay đổi URL theo yêu cầu
+            builder.WithOrigins("http://localhost:3000", "http://ShopVibe.com", "https://localhost:7180") // Thay đổi URL theo yêu cầu
                    .AllowAnyHeader()
-                   .AllowAnyMethod();
+                   .AllowAnyMethod()
+                   .AllowCredentials(); // Cho phép gửi thông tin xác thực;
         });
 });
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowSpecificOrigin", policy =>
+//    {
+//        policy.WithOrigins("http://localhost:3000")
+//              .AllowAnyHeader()
+//              .AllowAnyMethod()
+//              .AllowCredentials();
+//    });
+//});
 
 
 // Thêm các d?ch v? vào container.
@@ -36,7 +56,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(option =>
+builder.Services.AddIdentity<AspUserModel, IdentityRole>(option =>
     {
         option.Password.RequireDigit = false;
         option.Password.RequireLowercase = false;
@@ -47,12 +67,18 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(option =>
     }
     ).AddEntityFrameworkStores<AuthDbContext>().AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(option =>
+builder.Services.AddAuthentication(options =>
 {
-    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+    //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    // Thiết lập scheme mặc định cho xác thực là Cookie
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -74,7 +100,7 @@ builder.Services.AddAuthentication(option =>
         },
         OnTokenValidated = context =>
         {
-            // Bạn có thể thực hiện thêm logic tại đây nếu cần
+
             return Task.CompletedTask;
         },
         OnChallenge = context =>
@@ -85,14 +111,24 @@ builder.Services.AddAuthentication(option =>
             return context.Response.WriteAsync("{\"error\": \"Unauthorized access\"}");
         }
     };
-});
-
-builder.Services.AddAuthorization(option =>
+}).AddCookie()
+.AddGoogle(options =>
 {
-    option.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-    option.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+    options.ClientId = builder.Configuration["GoogleKeys:ClientId"];
+    options.ClientSecret = builder.Configuration["GoogleKeys:ClientSecret"];
+    options.CallbackPath = "/signin-google";  // Trùng với URI đã đăng ký trong Google Developer Console
 });
 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"))
+    .AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
+builder.Services.AddScoped<IAuthService,AuthService>();
+
+//builder.Services.AddTransient<EmploymentAdmin.Reponsitory.IEmailSender, EmailSender>();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddSingleton<MongoDBService>();
 

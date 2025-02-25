@@ -11,7 +11,7 @@ const loadCartFromLocalStorage = () => {
 
 // Initial State
 const initialState = {
-    items: loadCartFromLocalStorage(), // Load cart from localStorage
+    items: loadCartFromLocalStorage(), // Load cart from localStorage,
     statusTab: false, // Tab status (if needed)
 };
 
@@ -60,6 +60,7 @@ const cartReducer = (state, action) => {
             localStorage.setItem('cartItems', JSON.stringify(updatedItems));
             return { ...state, items: updatedItems };
         }
+
 
         case TOGGLE_STATUS_TAB:
             return { ...state, statusTab: !state.statusTab };

@@ -7,7 +7,10 @@ import ProductDetailPage from './page/Products/ProductDetailPage';
 import Home from './page/Home/Home';
 import NoPage from './page/Error/NoPage';
 import Cart from './page/Cart/Cart';
-
+import FormInfo from './component/FormInfo/FormInfo';
+import ResetPasswordPage from './page/Account/ResetPasswordPage';
+import AccountPage from './page/Account/AccountPage';
+import Information from './page/Account/InformationUser';
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/information' element={<FormInfo />} />
+          <Route path='/information/info' element={<Information />} />
+          <Route path='/newPassword' element={<ResetPasswordPage />} />
+          <Route path='/account' element={<AccountPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

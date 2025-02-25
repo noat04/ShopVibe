@@ -14,5 +14,6 @@ namespace EmploymentAdmin.Controllers
         {
             return Ok("Hello from Users Controller");
         }
+
     }
 }
