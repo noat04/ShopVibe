@@ -4,21 +4,77 @@ import { jwtDecode } from "jwt-decode";
 import Navbar from '../../component/Navbar/Navbar';
 import { toast } from 'react-toastify';
 import '../Cart/Cart.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage } from '../../stores/cartData';
 import { saveToken, removeToken, getToken } from "../../component/AuthStorage/AuthStorage";
 
 const Cart = () => {
+    const location = useLocation();
     const { state: { items }, deleteFromCart } = useCart();
     const navigate = useNavigate();
     const [state, dispatch] = useReducer(cartReducer, initialState);
     const [cart, setCartOfUser] = useState(null);
+    const [userName, setUserName] = useState(null);
+
+    // Hàm để lấy query parameters
+    const getQueryParams = (key) => {
+        const params = new URLSearchParams(location.search);
+        return params.get(key);
+    };
+    // Lấy các giá trị từ URL
+    const message = getQueryParams("message");
+    const PaymentMethod = getQueryParams("paymentMethod");
+    const PaymentId = getQueryParams("paymentId");
+    console.log("PaymentMethod:", PaymentMethod);
+    console.log("PaymentId:", PaymentId);
 
     const handleOpenCart = () => {
         dispatch(toggleStatusTab());
-        navigate("/information");
+        navigate("/cart/information");
     };
-    // const user = JSON.parse(localStorage.getItem('userId'));
+    useEffect(() => {
+        const fetchCreateOrder = async () => {
+            const token = getToken();
+            console.log("Token:", token);
+            const decodedToken = jwtDecode(token);
+            setUserName(decodedToken.sub || ""); // Gán thông tin người dùng
+            try {
+                if (PaymentId && PaymentMethod) {
+                    console.log("Dữ liệu gửi:", { PaymentMethod, PaymentId });
+
+                    const response = await fetch('https://localhost:7180/api/Order/CheckOut', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            PaymentMethod: PaymentMethod,
+                            PaymentId: PaymentId,
+                            UserName: userName
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        console.error("Lỗi khi gọi API:", response.status, response.statusText);
+                        const error = await response.json();
+                        console.error("Chi tiết lỗi:", error);
+                        return;
+                    }
+
+                    const data = await response.json();
+                    console.log("Đặt hàng thành công:", data);
+                } else {
+                    console.log("Thông tin thanh toán không hợp lệ.");
+                }
+            } catch (error) {
+                console.error("Lỗi khi gọi API:", error);
+            }
+        };
+
+        fetchCreateOrder();
+    }, []);
+
     useEffect(() => {
         const fetchCartDetails = async () => {
             const token = getToken(); // Lấy token từ localStorage
@@ -54,6 +110,8 @@ const Cart = () => {
         fetchCartDetails();
         console.log(cart);
     }, []);
+
+    // const user = JSON.parse(localStorage.getItem('userId'));
 
     const prepareCartDetails = (index) => {
         if (!cart || !cart.cartDetails) {

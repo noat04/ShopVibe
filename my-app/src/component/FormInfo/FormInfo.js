@@ -4,6 +4,7 @@ import Navbar from '../../component/Navbar/Navbar';
 import { useNavigate } from "react-router-dom";
 import { saveToken, removeToken, getToken } from "../AuthStorage/AuthStorage";
 import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, loadCartFromLocalStorage } from '../../stores/cartData';
+import { toast } from "react-toastify";
 
 const FormInfo = () => {
     const { total } = useCart();
@@ -14,7 +15,11 @@ const FormInfo = () => {
         dispatch(toggleStatusTab());
         navigate("/information");
     };
-    const handleSubmit = (event) => {
+    const handleOpenHistory = () => {
+        dispatch(toggleStatusTab());
+        navigate("/account/history");
+    };
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const validAmount = parseFloat(formData.Amount);
@@ -52,13 +57,15 @@ const FormInfo = () => {
             })
             .then((data) => {
                 if (data.paymentUrl) {
-
+                    
                     window.location.href = data.paymentUrl;
+                    toast.success("Tạo URL thanh toán thành công.");
+                    // handleOpenHistory();
                 } else {
                     alert("Không thể tạo URL thanh toán.");
                 }
             })
-            .catch((error) => alert(`Error: ${error.message}`));
+            .catch((error) => alert(`Error: ${error.message}`))
     };
 
     const [formData, setFormData] = useState({
@@ -66,7 +73,7 @@ const FormInfo = () => {
         Amount: total > 0 ? total : 1, // Đảm bảo Amount luôn là số dương
         OrderDescription: "Thanh toan qua Vnpay tai HieuTanStore".replace(/[^\w\s]/g, '').trim(),
         Name: "User".replace(/[^\w\s]/g, '').trim(),
-    });
+    }); 
 
     console.log(JSON.stringify(formData)); // Kiểm tra xem dữ liệu có đúng định dạng không
 

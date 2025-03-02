@@ -441,7 +441,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -558,6 +558,22 @@
       {
         "Name": "updateEmployeeDto",
         "Type": "EmloymentAdmin.Models.Dtos.UpdateEmployeeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmploymentAdmin.Controllers.OrderController",
+    "Method": "CheckOut",
+    "RelativePath": "api/Order/CheckOut",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EmploymentAdmin.Models.Dtos.OrderRequest",
         "IsRequired": true
       }
     ],

@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using EmloymentAdmin.Data;
 using EmploymentAdmin.Models.VNPay;
 using EmploymentAdmin.Service.VNPay;
 using Microsoft.AspNetCore.Mvc;
@@ -10,14 +11,15 @@ namespace EmploymentAdmin.Controllers
     public class PaymentController : Controller
     {
         private readonly IVnPayService _vnPayService;
-
-        public PaymentController(IVnPayService vnPayService)
+        private readonly ApplicationDBConText _dBContext;
+        public PaymentController(IVnPayService vnPayService, ApplicationDBConText dBConText)
         {
             _vnPayService = vnPayService;
+            _dBContext = dBConText;
         }
         [HttpGet]
         [Route("Callback")]
-        public IActionResult PaymentCallbackVnpay()
+        public async Task<IActionResult> PaymentCallbackVnpay()
         {
             try
             {
@@ -29,11 +31,36 @@ namespace EmploymentAdmin.Controllers
                     return BadRequest(new { message = "Chữ ký không hợp lệ." });
                 }
 
-                return Json(response);
+                var newVNPayModel = new VNPayModel
+                {
+                    OrderId = response.OrderId,
+                    PaymentMethod = response.PaymentMethod,
+                    PaymentId = response.PaymentId,
+                    OrderDescription = response.OrderDescription,
+                    TransactionId = response.TransactionId,
+                    DateCreated = DateTime.Now
+                };
+                _dBContext.Add(newVNPayModel);
+                await _dBContext.SaveChangesAsync();
+                // Điều hướng về trang Home kèm thông báo
+                return Redirect(
+                    $"http://localhost:3000/cart?message={Uri.EscapeDataString("Thanh toán thành công.")}" +
+                    $"&paymentMethod={Uri.EscapeDataString(response.PaymentMethod)}" +
+                    $"&paymentId={Uri.EscapeDataString(response.PaymentId)}"
+                );
+
+                //return Json(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Đã xảy ra lỗi khi xử lý yêu cầu.", error = ex.Message });
+       
+                // Điều hướng về trang lỗi hoặc Home với thông báo lỗi
+                return Redirect(
+                    $"http://localhost:3000/cart?message={Uri.EscapeDataString($"Đã xảy ra lỗi: {ex.Message}")}" +
+                    $"&paymentMethod={Uri.EscapeDataString("N/A")}" +
+                    $"&paymentId={Uri.EscapeDataString("N/A")}"
+                );
+
             }
         }
 

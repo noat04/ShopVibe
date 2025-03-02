@@ -11,6 +11,7 @@ import FormInfo from './component/FormInfo/FormInfo';
 import ResetPasswordPage from './page/Account/ResetPasswordPage';
 import AccountPage from './page/Account/AccountPage';
 import Information from './page/Account/InformationUser';
+import History from './component/Account/History';
 
 function App() {
   return (
@@ -26,10 +27,11 @@ function App() {
           <Route path='/product-detail/:id' element={<ProductDetailPage />} />
           <Route path='*' element={<NoPage />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path='/information' element={<FormInfo />} />
-          <Route path='/information/info' element={<Information />} />
+          <Route path='/cart/information' element={<FormInfo />} />
+          <Route path='/account/info' element={<Information />} />
           <Route path='/newPassword' element={<ResetPasswordPage />} />
           <Route path='/account' element={<AccountPage />} />
+          <Route path='/account/history' element={<History />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

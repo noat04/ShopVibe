@@ -29,16 +29,23 @@ namespace EmloymentAdmin.Controllers
 
         // Get customer by ID
         [HttpGet]
-        [Route("{id:guid}")]
-        public IActionResult GetCustomerById(Guid id)
+        [Route("{id}")]
+        public IActionResult GetCustomerById(string id)
         {
-            var customer = dBContext.Customers.Find(id);
+            if (!Guid.TryParse(id, out Guid customerId))
+            {
+                return BadRequest("Invalid GUID format.");
+            }
+
+            var customer = dBContext.Customers.FirstOrDefault(c => c.Id == customerId);
             if (customer == null)
             {
                 return NotFound();
             }
+
             return Ok(customer);
-        }  
+        }
+
         [HttpGet]
         [Route("{userId}")]
         public IActionResult GetCustomersByUserId(string userId)
@@ -109,7 +116,7 @@ namespace EmloymentAdmin.Controllers
             }
             dBContext.Customers.Remove(customer);
             dBContext.SaveChanges();
-            return Ok();
+            return Ok(new { Message = "Đã xóa sản phẩm thành công.", customer });
         }
     }
 }
