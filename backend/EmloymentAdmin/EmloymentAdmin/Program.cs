@@ -150,6 +150,12 @@ app.UseHttpsRedirection();
 
 // Sử dụng CORS
 app.UseCors("AllowSpecificOrigins");
+//app.Use(async (context, next) =>
+//{
+//    context.Response.Headers.Add("Cross-Origin-Opener-Policy", "same-origin");
+//    context.Response.Headers.Add("Cross-Origin-Embedder-Policy", "require-corp");
+//    await next();
+//});
 
 app.UseAuthentication(); // Thêm dòng này ?? kích ho?t middleware xác th?c
 app.UseAuthorization();

@@ -83,7 +83,7 @@ namespace EmloymentAdmin.Controllers
         //}
 
         // Update customer details
-       
+
 
         [HttpPut]
         [Route("{id:guid}")]
@@ -103,7 +103,7 @@ namespace EmloymentAdmin.Controllers
             dBContext.SaveChanges();
             return Ok(customer);
         }
-            
+
         // Delete customer
         [HttpDelete]
         [Route("{id:guid}")]

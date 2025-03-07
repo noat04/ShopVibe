@@ -34,6 +34,7 @@ namespace EmloymentAdmin.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<AspUserModel> _userManager;
+        private readonly SignInManager<AspUserModel> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDBConText _database;
         private readonly AuthDbContext _authDBContext;
@@ -44,6 +45,7 @@ namespace EmloymentAdmin.Controllers
 
         public AuthController(
          UserManager<AspUserModel> userManager,
+          SignInManager<AspUserModel> signInManager, // Thêm SignInManager
          RoleManager<IdentityRole> roleManager,
          ApplicationDBConText dbContext,
          AuthDbContext context,
@@ -53,6 +55,7 @@ namespace EmloymentAdmin.Controllers
          IAuthService authService)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _roleManager = roleManager;
             _database = dbContext;
             _authDBContext = context;
@@ -259,6 +262,7 @@ namespace EmloymentAdmin.Controllers
             //return RedirectToAction("");
             return Ok(new { Message = "Please check your email to reset your password." });
         }
+        
         [HttpPost("UpdatePassword")]
         public async Task<IActionResult> UpdateNewPassword([FromBody] UpdatePasswordModel model)
         {
@@ -288,6 +292,150 @@ namespace EmloymentAdmin.Controllers
 
         [HttpGet("login-google")]
         public async Task LoginByGoogle()
+        {
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("GoogleLoginResponse")
+            });
+        }
+
+        [HttpGet("GoogleLoginResponse")]
+        //public async Task<IActionResult> GoogleLoginResponse()
+        //{
+        //    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        //    if (!result.Succeeded || result.Principal == null)
+        //    {
+        //        return Redirect($"http://localhost:3000/Home?message={Uri.EscapeDataString("Authentication failed.")}");
+        //    }
+
+        //    var claims = result.Principal.Identities.FirstOrDefault()?.Claims.Select(c => new
+        //    {
+        //        c.Type,
+        //        c.Value
+        //    }).ToList();
+
+        //    var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+
+        //    if (string.IsNullOrEmpty(email))
+        //    {
+        //        return Redirect($"http://localhost:3000/Home?message={Uri.EscapeDataString("Email not found in claims.")}");
+        //    }
+
+        //    var existingUser = await _userManager.FindByEmailAsync(email);
+
+        //    if (existingUser == null)
+        //    {
+        //        return Redirect($"http://localhost:3000/Home?message={Uri.EscapeDataString("Tài khoản chưa được đăng ký. Vui lòng đăng ký trước.")}");
+        //    }
+
+        //    // Đăng nhập người dùng
+        //    await _signInManager.SignInAsync(existingUser, isPersistent: false);
+
+        //    // Tạo JWT token
+        //    var userRoles = await _userManager.GetRolesAsync(existingUser);
+        //    var authClaims = new List<Claim>
+        //    {
+        //        new Claim(JwtRegisteredClaimNames.Sub, existingUser.UserName),
+        //        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //        new Claim(ClaimTypes.Email, existingUser.Email)
+        //    };
+        //    authClaims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+        //    var token = new JwtSecurityToken(
+        //        issuer: _configuration["Jwt:Issuer"],
+        //        audience: _configuration["Jwt:Audience"],
+        //        expires: DateTime.Now.AddMinutes(double.Parse(_configuration["Jwt:ExpiryMinutes"]!)),
+        //        claims: authClaims,
+        //        signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)),
+        //                SecurityAlgorithms.HmacSha256)
+        //    );
+
+        //    //var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+        //    var response = await _authService.CreateTokenResponse(existingUser);
+        //    // Lưu token và refresh token vào Cookie
+        //    Response.Cookies.Append("accessToken", response.AccessToken, new CookieOptions
+        //    {
+        //        HttpOnly = true,
+        //        Secure = true,
+        //        SameSite = SameSiteMode.Strict,
+        //        Expires = DateTime.UtcNow.AddMinutes(30)
+        //    });
+
+        //    Response.Cookies.Append("refreshToken", response.RefreshToken, new CookieOptions
+        //    {
+        //        HttpOnly = false,
+        //        Secure = true,
+        //        SameSite = SameSiteMode.Strict,
+        //        Expires = DateTime.UtcNow.AddDays(7)
+        //    });
+
+        //    return Redirect("http://localhost:3000/Home");
+        //}
+
+
+
+        public async Task<IActionResult> GoogleLoginResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (!result.Succeeded || result.Principal == null)
+            {
+                return BadRequest(new { error = "Authentication failed" });
+            }
+
+            var claims = result.Principal.Identities.FirstOrDefault()?.Claims.Select(c => new
+            {
+                c.Type,
+                c.Value
+            }).ToList();
+
+            var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest(new { error = "Email not found in claims" });
+            }
+
+            var existingUser = await _userManager.FindByEmailAsync(email);
+
+            if (existingUser == null)
+            {
+                return Unauthorized(new { message = "Tài khoản chưa được đăng ký." });
+            }
+
+            // Lấy danh sách quyền (roles) của user
+            var userRoles = await _userManager.GetRolesAsync(existingUser);
+
+            // Tạo JWT token giống như phương thức Login
+            var authClaims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, existingUser.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Email, existingUser.Email)
+            };
+
+            authClaims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                expires: DateTime.Now.AddMinutes(double.Parse(_configuration["Jwt:ExpiryMinutes"]!)),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)),
+                        SecurityAlgorithms.HmacSha256)
+            );
+            var response = await _authService.CreateTokenResponse(existingUser);
+            return Ok(new
+            {
+                response,
+                user = existingUser
+            });
+        }
+
+
+        [HttpGet("register-google")]
+        public async Task RegisterByGoogle()
         {
             await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties
             {
@@ -358,8 +506,7 @@ namespace EmloymentAdmin.Controllers
                 // Nếu thành công, chuyển hướng người dùng
                 return Redirect("http://localhost:3000/Home");
             }
-
-            return Redirect("http://localhost:3000/404");
+            return Redirect($"http://localhost:3000/Home?message={Uri.EscapeDataString("Đã có tài khoản")}");
         }
 
 
@@ -393,16 +540,7 @@ namespace EmloymentAdmin.Controllers
             return false;
         }
 
-        //[HttpPost("refresh-token")]
-        //public async Task<ActionResult<TokenResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
-        //{
-        //    var result = await _authService.RefreshTokenAsync(request);
-        //    if (result == null)
-        //    {
-        //        return BadRequest("Invalid token");
-        //    }
-        //    return Ok(result);
-        //}
+
         [HttpPost("refresh-token")]
         public async Task<ActionResult<TokenResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
         {

@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|d:\\websitenhom\\noat04.github.io\\shopvibe\\backend\\emloymentadmin\\emloymentadmin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1473E97B-90F2-4CBF-BC6E-D4E9FD149F39}|EmloymentAdmin\\EmploymentAdmin.csproj|solutionrelative:emloymentadmin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
+              "RelativeDocumentMoniker": "EmloymentAdmin\\Program.cs",
+              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Program.cs",
+              "RelativeToolTip": "EmloymentAdmin\\Program.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAAJ0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T16:32:15.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "EmloymentAdmin\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwFwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T16:39:34.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "EmloymentAdmin\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\websitenhom\\noat04.github.io\\ShopVibe\\backend\\EmloymentAdmin\\EmloymentAdmin\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "EmloymentAdmin\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAHIBAAAAAAAAAAAUwLIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T13:18:55.436Z",
+              "EditorCaption": ""
             }
           ]
         }

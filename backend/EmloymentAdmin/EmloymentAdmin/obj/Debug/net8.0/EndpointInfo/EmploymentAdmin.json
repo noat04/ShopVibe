@@ -298,6 +298,30 @@
         }
       }
     },
+    "/api/Auth/GoogleLoginResponse": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/register-google": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/GoogleResponse": {
       "get": {
         "tags": [
@@ -2116,6 +2140,10 @@
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "firstName": {
             "type": "string",
             "nullable": true

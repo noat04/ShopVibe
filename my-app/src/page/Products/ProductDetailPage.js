@@ -10,6 +10,7 @@ import { useCart } from '../../stores/CartContext';
 const ProductDetailPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [cartId, setCartId] = useState(null);
     const [quality, setQuality] = useState(1);
     const [selectColor, setSelectColor] = useState('');
     const [selectSize, setSelectSize] = useState('');
@@ -56,12 +57,21 @@ const ProductDetailPage = () => {
     const handleMinusQuality = () => quality > 1 && setQuality(quality - 1);
 
     // const handleAddToCart = async () => {
+    //     // Thêm sản phẩm vào giỏ hàng
+    //     const cartDetails = [{
+    //         productId: product.productId,
+    //         quantity: quality,
+    //         size: selectSize,
+    //         color: selectColor,
+    //         price: product.price,
+    //     }];
+    //     if (!selectColor || !selectSize) {
+    //         toast.error('Vui lòng chọn màu và kích thước trước khi thêm vào giỏ hàng.');
+    //         return;
+    //     }
+
     //     if (customer === null) {
-    //         // Xử lý logic khi không có thông tin khách hàng
-    //         if (!selectColor || !selectSize) {
-    //             toast.error('Vui lòng chọn màu và kích thước trước khi thêm vào giỏ hàng.');
-    //             return;
-    //         }
+
     //         addToCart(product, quality, selectColor, selectSize);
     //         toast.success(`${product.productName} đã được thêm vào giỏ hàng!`);
     //         setTimeout(() => window.location.reload(), 4000);
@@ -69,6 +79,9 @@ const ProductDetailPage = () => {
     //     }
 
     //     try {
+    //         // let cartId = null;
+
+    //         // Lấy thông tin giỏ hàng
     //         const cartResponse = await fetch(`https://localhost:7180/api/Cart/GetCartDetails/${customer}`, {
     //             method: 'GET',
     //             headers: {
@@ -77,27 +90,42 @@ const ProductDetailPage = () => {
     //             },
     //         });
 
-    //         let cartData;
     //         if (cartResponse.ok) {
-    //             cartData = await cartResponse.json();
+    //             const cartData = await cartResponse.json();
+    //             setCartId(cartData.cartId); // Cập nhật cartId
+    //             cartId = cartData.cartId; // Sử dụng giá trị trực tiếp
+
     //         } else {
-    //             // Nếu phản hồi không phải JSON, xử lý phản hồi dạng text
-    //             const errorText = await cartResponse.text();
-    //             console.error('Error response:', errorText);
-    //             throw new Error(errorText);
-    //         }
-    //         const cartId = cartData?.cart.cartId;
+    //             console.log('Giỏ hàng không tồn tại. Tạo giỏ hàng mới...');
+    //             const createCartResponse = await fetch(`https://localhost:7180/api/Cart/CreateCart/${customer}`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             });
 
-    //         console.log(cartData);
-    //         if (!cartId) {
-    //             console.error('cartId không tồn tại hoặc undefined:', cartData);
-    //             throw new Error('Giỏ hàng không tồn tại.');
+    //             if (createCartResponse.ok) {
+    //                 const newCart = await createCartResponse.json();
+    //                 console.log('Phản hồi từ API CreateCart:', newCart); // Log phản hồi
+    //                 // console.log('Phản hồi từ API CreateCart:', newCart.cart.cartId);
+    //                 setCartId(newCart);
+    //                 cartId = newCart; // Cập nhật giá trị trực tiếp
+    //                 console.log(cartId);
+    //             } else {
+    //                 const errorResponse = await createCartResponse.json();
+    //                 console.error('Lỗi khi tạo giỏ hàng:', createCartResponse.status, errorResponse);
+    //                 throw new Error('Không thể tạo giỏ hàng mới.');
+    //             }
     //         }
-
-    //         // Chuẩn bị thêm sản phẩm vào giỏ hàng
-    //         addToCart(product, quality, selectColor, selectSize);
 
     //         console.log(cartId);
+    //         // Kiểm tra cartId
+    //         if (cartId == null) {
+    //             console.error('cartId không tồn tại sau khi gọi API.');
+    //             throw new Error('Giỏ hàng không tồn tại hoặc không thể tạo mới.');
+    //         }
+
     //         const addCartDetailsResponse = await fetch(`https://localhost:7180/api/Cart/AddCartDetails/${cartId}`, {
     //             method: 'POST',
     //             headers: {
@@ -108,8 +136,7 @@ const ProductDetailPage = () => {
     //         });
 
     //         if (addCartDetailsResponse.ok) {
-    //             const result = await addCartDetailsResponse.json();
-    //             console.log('Thêm sản phẩm thành công:', result);
+    //             addToCart(product, quality, selectColor, selectSize);
     //             toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
     //         } else {
     //             const errorResponse = await addCartDetailsResponse.json();
@@ -118,20 +145,26 @@ const ProductDetailPage = () => {
     //         }
     //     } catch (error) {
     //         console.error('Lỗi khi gọi API:', error);
-    //         toast.error(`Lỗi: ${error.message}`);
+    //         toast.error(`Lỗi hệ thống: ${error.message}. Vui lòng thử lại sau.`);
     //     }
+
     // };
     const handleAddToCart = async () => {
+        const cartDetails = [{
+            productId: product.productId,
+            quantity: quality,
+            size: selectSize,
+            color: selectColor,
+            price: product.price,
+        }];
+
         if (!selectColor || !selectSize) {
             toast.error('Vui lòng chọn màu và kích thước trước khi thêm vào giỏ hàng.');
             return;
         }
+
         if (customer === null) {
-            // Xử lý logic khi không có thông tin khách hàng
-            if (!selectColor || !selectSize) {
-                toast.error('Vui lòng chọn màu và kích thước trước khi thêm vào giỏ hàng.');
-                return;
-            }
+
             addToCart(product, quality, selectColor, selectSize);
             toast.success(`${product.productName} đã được thêm vào giỏ hàng!`);
             setTimeout(() => window.location.reload(), 4000);
@@ -139,61 +172,52 @@ const ProductDetailPage = () => {
         }
 
         try {
-            let cartId = null;
+            let currentCartId = cartId;
 
-            // Gọi API để lấy thông tin giỏ hàng
-            const cartResponse = await fetch(`https://localhost:7180/api/Cart/GetCartDetails/${customer}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            let cartData;
-            if (cartResponse.ok) {
-                cartData = await cartResponse.json();
-                cartId = cartData?.cart?.cartId || null;
-                console.log(cartData);
-            } else {
-                const errorText = await cartResponse.text();
-                console.error('Error response:', errorText);
-                throw new Error(errorText);
-            }
-
-            // Nếu không tìm thấy giỏ hàng, tạo mới giỏ hàng
-            if (!cartId) {
-                console.log('Giỏ hàng không tồn tại. Tạo giỏ hàng mới...');
-                const createCartResponse = await fetch('https://localhost:7180/api/Cart/CreateCart', {
-                    method: 'POST',
+            // Nếu chưa có cartId trong state, lấy từ API
+            if (!currentCartId) {
+                const cartResponse = await fetch(`https://localhost:7180/api/Cart/GetCartDetails/${customer}`, {
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
                     },
-                    body: JSON.stringify({ customerId: customer }),
                 });
 
-                if (createCartResponse.ok) {
-                    const newCart = await createCartResponse.json();
-                    cartId = newCart.cartId;
+                if (cartResponse.ok) {
+                    const cartData = await cartResponse.json();
+                    currentCartId = cartData.cartId;
+                    setCartId(currentCartId); // Cập nhật vào state
                 } else {
-                    throw new Error('Không thể tạo giỏ hàng mới.');
+                    console.log('Giỏ hàng không tồn tại. Tạo giỏ hàng mới...');
+                    const createCartResponse = await fetch(`https://localhost:7180/api/Cart/CreateCart/${customer}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+
+                    if (createCartResponse.ok) {
+                        const newCart = await createCartResponse.json();
+                        currentCartId = newCart.cart.cartId;
+                        setCartId(currentCartId); // Cập nhật vào state
+                    } else {
+                        const errorResponse = await createCartResponse.json();
+                        console.error('Lỗi khi tạo giỏ hàng:', createCartResponse.status, errorResponse);
+                        throw new Error('Không thể tạo giỏ hàng mới.');
+                    }
                 }
             }
 
-            // Chuẩn bị thêm sản phẩm vào giỏ hàng
-            const cartDetails = [{
-                productId: product.productId,
-                quantity: quality,
-                size: selectSize,
-                color: selectColor,
-                price: product.price,
-            }];
+            // Kiểm tra cartId
+            if (!currentCartId) {
+                console.error('cartId không tồn tại sau khi gọi API.');
+                throw new Error('Giỏ hàng không tồn tại hoặc không thể tạo mới.');
+            }
 
-            console.log(cartDetails);
-            // console.log(cartId);
-            // Gọi API để thêm hoặc cập nhật sản phẩm trong giỏ hàng
-            const addCartDetailsResponse = await fetch(`https://localhost:7180/api/Cart/AddCartDetails/${cartId}`, {
+            // Gửi thông tin sản phẩm vào giỏ hàng
+            const addCartDetailsResponse = await fetch(`https://localhost:7180/api/Cart/AddCartDetails/${currentCartId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -203,7 +227,7 @@ const ProductDetailPage = () => {
             });
 
             if (addCartDetailsResponse.ok) {
-                const result = await addCartDetailsResponse.json();
+
                 addToCart(product, quality, selectColor, selectSize);
                 toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
             } else {
@@ -213,9 +237,10 @@ const ProductDetailPage = () => {
             }
         } catch (error) {
             console.error('Lỗi khi gọi API:', error);
-            toast.error(`Lỗi: ${error.message}`);
+            toast.error(`Lỗi hệ thống: ${error.message}. Vui lòng thử lại sau.`);
         }
     };
+
 
 
 

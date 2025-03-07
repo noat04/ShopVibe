@@ -15,6 +15,7 @@ const Information = () => {
         address: "",
         sex: "",
     });
+    const token = getToken();
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -40,30 +41,86 @@ const Information = () => {
     }, [id]);
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Ngăn reload trang
+    // const handleSubmit = (e) => {
+    //     // e.preventDefault(); // Ngăn reload trang
 
-        // Lấy id từ customer nếu formData.id rỗng
+    //     // Lấy id từ customer nếu formData.id rỗng
+    //     const updatedCustomer = {
+    //         ...customer,
+    //         ...formData,
+    //         // id: formData.id || customer.id,
+    //     };
+
+    //     console.log("Updated customer (final):", updatedCustomer);
+    //     try {
+    //         const updateResponse = await fetch(`https://localhost:7180/api/Customers/UpdateCustomer/${id}`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //             body: JSON.stringify(formData),
+    //         })
+    //         if (updateResponse.ok) {
+    //             // Cập nhật thành công
+    //             const storeCustomer = JSON.parse(localStorage.getItem('customers')) || [];
+    //             const updatedCustomers = storeCustomer.map((cust) =>
+    //                 cust.id === updatedCustomer.id ? updatedCustomer : cust
+    //             );
+    //             localStorage.setItem('customers', JSON.stringify(updatedCustomers));
+    //             toast.success("Thông tin đã được lưu thành công!");
+    //             setCustomer(updatedCustomer);
+    //         } else {
+    //             toast.error("Cập nhật thất bại. Vui lòng thử lại!");
+    //             // const responseText = updateResponse.text();
+    //             // console.error("Lỗi từ API:", responseText);
+    //         }
+
+    //     } catch (error) {
+    //         console.error("Lỗi khi gọi API:", error);
+    //     }
+    // };
+    const handleSubmit = async (e) => {
+        // e.preventDefault(); // Ngăn reload trang
         const updatedCustomer = {
             ...customer,
             ...formData,
-            // id: formData.id || customer.id,
         };
 
         console.log("Updated customer (final):", updatedCustomer);
+        try {
+            const updateResponse = await fetch(`https://localhost:7180/api/Customers/UpdateCustomer/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(updatedCustomer), // Gửi toàn bộ đối tượng cập nhật
+            });
 
-        // Cập nhật localStorage
-        const storeCustomer = JSON.parse(localStorage.getItem('customers')) || [];
-        const updatedCustomers = storeCustomer.map((cust) =>
-            cust.email === updatedCustomer.email ? updatedCustomer : cust
-        );
+            if (updateResponse.ok) {
+                // Lấy dữ liệu trả về từ server
+                const updatedCustomerFromServer = await updateResponse.json();
 
-        localStorage.setItem('customers', JSON.stringify(updatedCustomers));
+                // Cập nhật localStorage
+                const storeCustomer = JSON.parse(localStorage.getItem('customers')) || [];
+                const updatedCustomers = storeCustomer.map((cust) =>
+                    cust.id === updatedCustomerFromServer.id ? updatedCustomerFromServer : cust
+                );
+                localStorage.setItem('customers', JSON.stringify(updatedCustomers));
 
-        // Hiển thị thông báo và cập nhật state
-        toast.success("Thông tin đã được lưu thành công!");
-        setCustomer(updatedCustomer);
-        console.log("After update:", updatedCustomers);
+                // Hiển thị thông báo thành công
+                toast.success("Thông tin đã được lưu thành công!");
+                setCustomer(updatedCustomerFromServer);
+            } else {
+                const responseText = await updateResponse.text();
+                console.error("Lỗi từ API:", responseText);
+                toast.error("Cập nhật thất bại. Vui lòng thử lại!");
+            }
+        } catch (error) {
+            console.error("Lỗi khi gọi API:", error);
+            toast.error("Có lỗi xảy ra khi kết nối tới server.");
+        }
     };
 
 

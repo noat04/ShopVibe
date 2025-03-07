@@ -8,9 +8,12 @@ import cartReducer, { initialState, addToCart, toggleStatusTab, deleteFromCart, 
 const AccountPage = () => {
     const navigate = useNavigate();
     const [state, dispatch] = useReducer(cartReducer, initialState);
+    const customers = JSON.parse(localStorage.getItem('customers'));
+    const customerId = customers[0].id; // Lấy ID từ phần tử đầu tiên của mảng
     const handleOpenInfor = () => {
         dispatch(toggleStatusTab());
-        navigate("/account/info");
+        navigate(`/account/update-customer/${customerId}`);
+
     };
 
     return (

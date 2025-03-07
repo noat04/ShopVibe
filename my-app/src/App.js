@@ -28,7 +28,7 @@ function App() {
           <Route path='*' element={<NoPage />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/cart/information' element={<FormInfo />} />
-          <Route path='/account/info' element={<Information />} />
+          <Route path='/account/update-customer/:id' element={<Information />} />
           <Route path='/newPassword' element={<ResetPasswordPage />} />
           <Route path='/account' element={<AccountPage />} />
           <Route path='/account/history' element={<History />} />

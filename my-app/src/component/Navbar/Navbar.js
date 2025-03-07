@@ -38,11 +38,11 @@ const Navbar = () => {
   }, [state.items]);
 
   useEffect(() => {
-    // // Xóa customer và userId từ localStorage
-    // localStorage.removeItem("customers");
-    // localStorage.removeItem("userId");
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("refreshToken");
+    if (!token) {
+      console.log("Chưa đăng nhập");
+      return;
+    }
+
     if (token && typeof token === "string" && isTokenExpired(token) === false) {
       try {
         const decodedToken = jwtDecode(token);
@@ -74,7 +74,7 @@ const Navbar = () => {
       fetch("https://localhost:7180/api/Auth/refresh-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user, token }),
+        body: JSON.stringify({ userId: user, refreshToken: token }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -135,18 +135,7 @@ const Navbar = () => {
     console.log(`Searching for: ${searchValue}`);
   };
 
-  // Xử lý thêm sản phẩm vào giỏ hàng
-  const handleAddToCart = (productId, quantity) => {
-    dispatch(addToCart(productId, quantity));
-    toast.success('Sản phẩm đã được thêm vào giỏ hàng!', {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  };
+
 
   const handleOpenCart = () => {
     dispatch(toggleStatusTab());
@@ -244,13 +233,39 @@ const Navbar = () => {
       console.error('Đăng xuất thất bại:', error.message);
     }
   };
-  // Xử lý đăng nhập/ đăng ký google
-  const handleGoogleAuth = async () => {
-    if (isRegister) {
+  //Xử lý đăng nhập / đăng ký google
 
-    } else {
-      window.location.href = "https://localhost:7180/api/Auth/login-google"; // Gọi API đăng nhập Google
+  const handleGoogleAuth = async () => {
+    const isRegister = false; // Hoặc giá trị từ state của bạn
+    const apiUrl = isRegister
+      ? "https://localhost:7180/api/Auth/register-google"
+      : "https://localhost:7180/api/Auth/login-google";
+
+    // Mở popup
+    const popup = window.open(apiUrl, "_blank", "width=500,height=600");
+
+    if (!popup) {
+      console.error("Không thể mở popup.");
+      return;
     }
+
+    // Lắng nghe thông điệp từ popup
+    window.addEventListener("message", (event) => {
+      if (event.origin !== "https://localhost:7180") {
+        console.warn("Origin không hợp lệ:", event.origin);
+        return;
+      }
+
+      const { accessToken, refreshToken, user } = event.data;
+
+      // Lưu dữ liệu vào localStorage
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Điều hướng về home
+      window.location.href = "/home";
+    });
   };
 
 
@@ -412,26 +427,7 @@ const Navbar = () => {
         console.log(result);
         console.log(result.user);
         if (response.ok) {
-          // if (isTokenExpired(response.accessToken) === true) {
-          //   fetch("https://localhost:7180/api/Auth/refresh-token", {
-          //     method: "POST",
-          //     headers: { "Content-Type": "application/json" },
-          //     body: JSON.stringify(result.user.id, response.accessToken),
-          //   })
-          //     .then((response) => response.json())
-          //     .then((data) => {
-          //       if (data.isValid) {
-          //         saveToken(data.accessToken);
-          //       } else {
-          //         console.log(data.message);
-          //         removeToken(); // Xóa token nếu không hợp lệ
-          //       }
-          //     })
-          //     .catch((error) => {
-          //       console.error("Lỗi xác thực token:", error);
-          //       removeToken(); // Xóa token trong trường hợp xảy ra lỗi
-          //     });
-          // }
+
           saveToken(result.response.accessToken);
           localStorage.setItem("userId", result.user.id);
           localStorage.setItem("refreshToken", result.response.refreshToken);

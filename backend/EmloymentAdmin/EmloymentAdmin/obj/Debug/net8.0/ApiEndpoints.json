@@ -63,6 +63,16 @@
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "GoogleLoginResponse",
+    "RelativePath": "api/Auth/GoogleLoginResponse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
     "Method": "GoogleResponse",
     "RelativePath": "api/Auth/GoogleResponse",
     "HttpMethod": "GET",
@@ -191,6 +201,22 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmloymentAdmin.Controllers.AuthController",
+    "Method": "RegisterByGoogle",
+    "RelativePath": "api/Auth/register-google",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EmloymentAdmin.Controllers.AuthController",
